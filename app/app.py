@@ -12,23 +12,14 @@ app.config['DB_PASSWORD'] = DB_PASSWORD
 app.config['DB_HOST'] = DB_HOST
 app.config['BOOTSTRAP_SERVE_LOCAL'] = BOOTSTRAP_SERVE_LOCAL
 
-# to initialize MySQL
-app.config['MYSQL_DB'] = DB_NAME
-app.config['MYSQL_USER'] = DB_USERNAME
-app.config['MYSQL_PASSWORD'] = DB_PASSWORD
-app.config['MYSQL_HOST'] = DB_HOST
 
-mysql = MySQL(app)
-
-
-@app.route("/") 
-@app.route("/home")  
+@app.route("/")  
 def home():
     return render_template('home/home_page.html')
 
-@app.route("/student")  
-def student():
-    return render_template('student/student.html', title='Student')
+#@app.route("/student")  
+#def student():
+ #   return render_template('student/student.html', title='Student')
 
 @app.route("/program")  
 def program():
@@ -60,5 +51,4 @@ def login():
         else:
             flash('Failed to login. Please check username and password', 'danger')
     return render_template('login.html', title='Log In', form=form)
-
 

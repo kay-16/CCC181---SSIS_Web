@@ -4,11 +4,13 @@ from flask_bootstrap import Bootstrap
 from config import DB_USERNAME, DB_PASSWORD, DB_NAME, DB_HOST, SECRET_KEY, BOOTSTRAP_SERVE_LOCAL
 from flask_wtf.csrf import CSRFProtect
 
+
 mysql = MySQL()
 bootstrap = Bootstrap()
 
 def create_app():
-    app = Flask(__name__, instance_relative_config=True)
+    app = Flask(__name__)
+
     app.config.from_mapping(
         SECRET_KEY=SECRET_KEY,
         MYSQL_USER=DB_USERNAME,
@@ -17,12 +19,15 @@ def create_app():
         MYSQL_HOST=DB_HOST,
         #BOOTSTRAP_SERVE_LOCAL=BOOTSTRAP_SERVE_LOCAL
     )
+
+    # register blueprints
+    from app.students import student_bp
+    app.register_blueprint(student_bp, url_prefix="/student")
+
     bootstrap.init_app(app)
     mysql.init_app(app)
     CSRFProtect(app)
 
-    from .students import student_bp as user_blueprint
-    app.register_blueprint(user_blueprint)
-
-
+    
     return app
+
