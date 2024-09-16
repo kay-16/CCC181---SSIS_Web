@@ -11,7 +11,7 @@
     {% if title %}
         <title>Home | {{ title }}</title>
     {% else %}
-        <title>Home </title>
+        <title>Home | </title>
     {% endif %}
     
 </head>
@@ -19,18 +19,21 @@
     <header class="site-header">
         <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
           <div class="container">
-            <a class="navbar-brand mr-4" href="/">Student Information System</a>
+            <a class="navbar-brand mr-4" href="{{ url_for('main.home') }}">Student Information System</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarToggle">
               <div class="navbar-nav mr-auto">
-                <a class="nav-item nav-link" href="/">Home</a>
+                <a class="nav-item nav-link" href="{{ url_for('main.home') }}">Home</a>
+                <a class="nav-item nav-link" href="{{ url_for('students.student') }}">Student</a>
+                <a class="nav-item nav-link" href="{{ url_for('programs.program') }}">Programs</a>
+                <a class="nav-item nav-link" href="{{ url_for('college.colleges') }}">Colleges</a>
               </div>
               <!-- Navbar Right Side -->
               <div class="navbar-nav ms-auto">
-                <a class="nav-item nav-link" href="/login">Login</a>
-                <a class="nav-item nav-link" href="/register">Sign Up</a>
+                <a class="nav-item nav-link" href="{{ url_for('login.logins') }}">Login</a>
+                <a class="nav-item nav-link" href="{{ url_for('register.registers') }}">Sign Up</a>
               </div>
             </div>
           </div>
