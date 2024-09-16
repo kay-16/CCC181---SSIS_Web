@@ -10,6 +10,7 @@ email-validator = "*"
 mysql-connector-python = "*"
 flask-mysqldb = "*"
 flask-bootstrap = "*"
+python-dotenv = "*"
 
 [dev-packages]
 
