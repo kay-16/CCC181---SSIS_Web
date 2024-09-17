@@ -1,5 +1,5 @@
 from app import mysql
-
+import mysql.connector as mysql
 
 # Fetch all students from the database
 def get_all_students():
@@ -9,7 +9,6 @@ def get_all_students():
         rows = C.fetchall()
         for row in rows:
             print(row)
-
     finally:
         C.close()
     
