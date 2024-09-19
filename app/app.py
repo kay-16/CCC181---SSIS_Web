@@ -1,6 +1,6 @@
 from flask import Flask
 from config import SECRET_KEY, DB_NAME, DB_USERNAME, DB_PASSWORD, DB_HOST, DB_PORT, BOOTSTRAP_SERVE_LOCAL
-#from flask_mysqldb import MySQL
+from flask_mysqldb import MySQL
 
 
 app = Flask(__name__) #__name__ (name of module)
@@ -13,10 +13,4 @@ app.config['MYSQL_PORT'] = DB_PORT
 app.config['BOOTSTRAP_SERVE_LOCAL'] = BOOTSTRAP_SERVE_LOCAL
 app.config['MYSQL_DATABASE_SOCKET'] = ' '
 
-
-#mysql = MySQL(app)
-
-
-
-
-
+mysql = MySQL(app)
