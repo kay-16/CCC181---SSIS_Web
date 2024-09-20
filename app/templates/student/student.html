@@ -4,15 +4,19 @@
 
     <div class="container">
 
-        <!-- Search Bar -->
-        <div class="d-flex justify-content-between mb-3">
-            <form class="d-flex" method="GET" action="{{ url_for('students.search_student') }}">
-                <input class="form-control me-2" type="search" placeholder="Search a student" aria-label="Search" name="query">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
-
-            <a href="{{ url_for('students.add_student') }}" class="btn btn-success">Add Student</a>
+        <!-- Search Bar and Add Student Button -->
+        <div class="row mb-3">
+            <div class="col-md-9">
+                <form class="d-flex" method="GET" action="{{ url_for('students.search_student') }}">
+                    <input class="form-control me-2" type="search" placeholder="Search a student" aria-label="Search" name="query">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+            <div class="col-md-3 d-flex justify-content-end">
+                <a href="{{ url_for('students.add_student') }}" class="btn btn-success">Add Student</a>
+            </div>
         </div>
+
 
         <!-- Add Student Button 
         <div class="d-flex justify-content-end mb-3">

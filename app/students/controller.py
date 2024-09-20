@@ -29,6 +29,7 @@ def get_all_programs():
         if C:   # Check if C is not None before closing
             C.close()   
         
+
 # Adds the student to the database
 def add_student_to_db(student):
     C = mysql.connection.cursor()
@@ -46,21 +47,35 @@ def add_student_to_db(student):
         C.close()  # Ensure the cursor is closed
 
 
-
-
 # Search students by all information
-#def search_students():
-    #C = mysql.connection.cursor()
-    #try:
-         # //execute query to fetch student data by their ID no.
-        #s_query = "SELECT * FROM student WHERE ID_number = %s OR student_name = %s OR gender = %s OR year_lvl = %s OR course_code = %s"
+def search_students(query):
+    C = mysql.connection.cursor()
+    try:
+        search_statement = """
+                    SELECT * FROM student 
+                    WHERE id_format LIKE %s 
+                    OR CONCAT(first_name, ' ', last_name ) LIKE %s 
+                    OR year_lvl LIKE %s 
+                    OR sex LIKE %s  
+                    OR stud_course_code LIKE %s 
+                """
+        search_query = f"%{query}%"
 
-    #finally:
-        
+        # Executes query with search term applied to all fields
+        C.execute(search_statement, (search_query, search_query, search_query, search_query, search_query))
+        results = C.fetchall()
+        return results
+    
+    except Exception as e:
+        mysql.connection.rollback()  # Rollback in case of error
+        print(f"An error occurred: {e}")
+    finally:
+        C.close()
+
 
 def edit_students(student):
+    C  = mysql.connection.cursor()
     try:
-        C  = mysql.connection.cursor()
         edit_statement = """
                         UPDATE `students` 
                         SET `id_format` = %s, `first_name` = %s, `last_name` = %s, `year_lvl` = %s, `sex` = %s, `stud_course_code` = %s 
