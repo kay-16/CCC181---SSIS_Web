@@ -26,8 +26,8 @@ def get_all_programs():
         print(f"An error occurred: {e}")
         return None # Return None or handle the error as needed
     finally:
-        if C:   # Check if C is not None before closing
-            C.close()   
+        if C:   
+            C.close()   # Close the cursor
         
 
 # Adds the student to the database
@@ -41,10 +41,10 @@ def add_student_to_db(student):
         C.execute(insert_statement, student)
         mysql.connection.commit()
     except Exception as e:
-        mysql.connection.rollback()  # Rollback in case of error
+        mysql.connection.rollback()  # In case of error
         print(f"An error occurred: {e}")
     finally:
-        C.close()  # Ensure the cursor is closed
+        C.close()  # Close the cursor
 
 
 # Search students by all information
@@ -73,10 +73,10 @@ def search_students(query):
         return results
     
     except Exception as e:
-        mysql.connection.rollback()  # Rollback in case of error
+        mysql.connection.rollback()  # In case of error
         print(f"An error occurred: {e}")
     finally:
-        C.close()
+        C.close()  # Close the cursor
 
 
 # Fetch student data based on ID
@@ -91,13 +91,13 @@ def get_student_by_id(student_id):
         return results
 
     except Exception as e:
-        mysql.connection.rollback()  # Rollback in case of error
+        mysql.connection.rollback()  # In case of error
         print(f"An error occurred: {e}")
     finally:
-        C.close()
+        C.close()  # Close the cursor
 
 
-
+# Updates student data
 def edit_students(student):
     C  = mysql.connection.cursor()
     try:
@@ -110,8 +110,8 @@ def edit_students(student):
         mysql.connection.commit() 
         
     except Exception as e:
-        mysql.connection.rollback()  # Rollback in case of error
+        mysql.connection.rollback()  # In case of error
         print(f"An error occurred: {e}")
     finally:
-        C .close()  # Ensure the cursor is closed
+        C .close()  # Close the cursor
 
