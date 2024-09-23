@@ -5,10 +5,10 @@
 {% block content %}
 <div class="center-form">
     <div class="content-section">
-        <form method="POST" action="">
+        <form method="POST" action="{{ url_for('students.edit_student', id=student[0]) }}">
             {{ form.hidden_tag() }}
             <fieldset class="form-group">
-                <legend class="border-bottom mb-4">Add Student</legend>
+                <legend class="border-bottom mb-4">Edit Student</legend>
 
                 <div class="form-group mb-3">
                     {{ form.id_number.label(class="form-control-label") }}
@@ -97,7 +97,8 @@
                 
             </fieldset>
             <div class="form-group">
-                {{ form.submit(class="btn btn-outline-info") }}
+                {{ form.save(class="btn btn-success") }}
+                <a href="{{ url_for('students.student') }}" class="btn btn-outline-danger">Cancel</a>
             </div>
         </form>
     </div>

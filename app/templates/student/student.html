@@ -4,7 +4,7 @@
 
     <div class="container">
 
-        <!-- Search Bar and Add Student Button -->
+        <!-- Search Bar -->
         <div class="row mb-3">
             <div class="col-md-9">
                 <form class="d-flex" method="GET" action="{{ url_for('students.search_student') }}">
@@ -12,16 +12,14 @@
                     <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
             </div>
-            <div class="col-md-3 d-flex justify-content-end">
+
+        <!-- Add Student Button -->
+            <div class="col-md-3 text-md-right text-center">
                 <a href="{{ url_for('students.add_student') }}" class="btn btn-success">Add Student</a>
             </div>
         </div>
-
-        <!-- Add Student Button 
-        <div class="d-flex justify-content-end mb-3">
-            <a href="{{ url_for('students.add_student') }}" class="btn btn-success">Add Student</a>
-        </div>  
-    -->
+    </div> 
+       
         <table class="table">
             <thead style="background-color: #7cc404;color: #dfdfdf;">
                 <tr> 
@@ -44,11 +42,17 @@
                         <td>{{ student[4] }}</td>  <!-- sex -->
                         <td>{{ student[5] }}</td>  <!-- stud_course_code -->
                         <td>
-                            <span style="font-size: 24px;color: #7cc404;">
-                                <a href="/{{ student[0] }}/edit"> <i class="fas fa-edit"></i></a></span>
+                            <span style="font-size: 24px;">
+                                <a href="{{ url_for('students.edit_student', id=student[0]) }}"> 
+                                    <i class="fas fa-edit" style="color: #4CAF50;"></i>
+                                </a>
+                            </span>
 
-                                <span style="font-size: 24px;color: #7cc404;">
-                                    <a href="/{{ student[0] }}/delete"> <i class="fas fa-trash-alt"></i></a></span>           
+                                <span style="font-size: 24px;">
+                                    <a href="/{{ student[0] }}/delete"> 
+                                        <i class="fas fa-trash-alt" style="color: #F44336;"></i>
+                                    </a>
+                                </span>           
                         </td>
                     </tr>
                 {% endfor %}

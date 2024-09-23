@@ -1,7 +1,7 @@
 from flask import Blueprint
 from flask import Flask, render_template, request, url_for, redirect, flash
-from app.students.controller import get_all_students, get_all_programs, add_student_to_db, search_students
-from app.students.forms import StudentForms
+from app.students.controller import get_all_students, get_all_programs, add_student_to_db, search_students, edit_students, get_student_by_id
+from app.students.forms import StudentForms, EditStudentForms
 
 students = Blueprint('students', __name__)
 
@@ -15,12 +15,12 @@ def student():
 def add_student():
     form = StudentForms()
 
-    programs = get_all_programs()
+    programs = get_all_programs()   # Fetch programs
     if programs:
         form.stud_course_code.choices = [(program[0], f"{program[0]}, {program[1]}") for program in programs]
 
     if form.validate_on_submit():
-        # insert the added student into the database
+        # Insert the added student into the database
         student_data = (
             form.id_number.data,
             form.first_name.data,
@@ -33,9 +33,10 @@ def add_student():
         add_student_to_db(student_data)
 
         flash(f'Added {form.first_name.data} {form.last_name.data} with ID number {form.id_number.data}!', 'success') 
-        return redirect(url_for('students.student')) # if validated, redirect the user to the home page
+        return redirect(url_for('students.student')) # If validated, redirect the user to the home page
     
-    return render_template('student/studentForms.html', title='Student | Add', form=form, page_title="Add Student")
+    return render_template('student/student_form.html', title='Student | Add', form=form, page_title="Add Student")
+
 
 
 @students.route("/search", methods=["GET"])  
@@ -51,24 +52,44 @@ def search_student():
     return render_template('student/student.html', students=students)
 
 
-"""
-@students.route("/students/<int:id>/edit", methods=['GET', 'POST'])
+@students.route("/edit/<id>", methods=["POST", "GET"])
 def edit_student(id):
-    if request.method == 'POST':
-        # Call the edit function with form data
+    student = get_student_by_id(id) # Fetch student by their ID number
+    if not student:
+        flash("Student Not Found", "danger")
+        return redirect(url_for('students.student'))
+    
+    form = EditStudentForms()
+    
+    programs = get_all_programs()   # Fetch programs
+    if programs:
+        form.stud_course_code.choices = [(program[0], f"{program[0]}, {program[1]}") for program in programs]
+
+
+    if request.method == 'POST' and form.validate_on_submit():
+        # Prepare data for update
         student_data = (
-            request.form.get('id_format'),
-            request.form.get('first_name'),
-            request.form.get('last_name'),
-            request.form.get('year_lvl'),
-            request.form.get('sex'),
-            request.form.get('stud_course_code'),
+            form.id_number.data,
+            form.first_name.data,
+            form.last_name.data,    
+            form.year_lvl.data,
+            form.gender.data,
+            form.stud_course_code.data,
             id  # The ID of the student to update
         )
-        edit_students(student_data)
-        return redirect(url_for('students.student'))  # Redirect after edit
+
+        edit_students(student_data) # Calls edit function
+        flash("Student updated successfully", "success")
+        return redirect(url_for('students.student'))  # Redirect back to student list after edit
     
-    # If GET request, fetch the student data
-    student = get_student_by_id(id)  # Implement this function to fetch the student's current data
-    return render_template('student/edit_student.html', student=student)
-"""
+    # Prepopulate form with the student's existing data
+    form.id_number.data = student[0]
+    form.first_name.data = student[1]
+    form.last_name.data = student[2]
+    form.year_lvl.data = student[3]
+    form.gender.data = student[4]
+    form.stud_course_code.data = student[5]
+
+
+    return render_template('student/edit_student_form.html', title='Student | Edit', form=form, student=student)
+    
