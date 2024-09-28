@@ -7,12 +7,13 @@ def get_all_students():
         C.execute("SELECT id_format, last_name, first_name, year_lvl, sex, stud_course_code FROM student ORDER BY last_name, first_name ASC;")
         rows = C.fetchall()
         return rows
+    
     except Exception as e:
         print(f"An error occurred: {e}")
         return None # Return None or handle the error as needed
     finally:
-        if C:   # Check if C is not None before closing
-            C.close()   
+        if C:   
+            C.close()   # Close the cursor
     
 
 # Fetch all programs from the database
@@ -22,6 +23,7 @@ def get_all_programs():
         C.execute("SELECT course_code, course_name, college_belong FROM program ORDER BY course_code, course_name ASC;")
         rows = C.fetchall()
         return rows
+    
     except Exception as e:
         print(f"An error occurred: {e}")
         return None # Return None or handle the error as needed
@@ -40,6 +42,7 @@ def add_student_to_db(student):
         """
         C.execute(insert_statement, student)
         mysql.connection.commit()
+
     except Exception as e:
         mysql.connection.rollback()  # In case of error
         print(f"An error occurred: {e}")
@@ -113,5 +116,22 @@ def edit_students(student):
         mysql.connection.rollback()  # In case of error
         print(f"An error occurred: {e}")
     finally:
-        C .close()  # Close the cursor
+        C.close()  # Close the cursor
+
+
+# Removes student data based on ID number
+def delete_students(stud_id):
+    C  = mysql.connection.cursor()
+    try:
+        delete_statement = """ DELETE FROM student WHERE id_format = %s; """
+
+        C.execute(delete_statement, (stud_id,))
+        mysql.connection.commit() 
+        
+    except Exception as e:
+        mysql.connection.rollback()  # In case of error
+        print(f"An error occurred: {e}")
+    finally:
+        C.close()  # Close the cursor
+
 

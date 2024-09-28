@@ -1,24 +1,32 @@
 {% extends "layouts/package_layout.html" %}
+
 {% block content %}
-    <h1>Student Page</h1>
+        <h1>Student Page</h1>
 
-    <div class="container">
-
-        <!-- Search Bar -->
-        <div class="row mb-3">
-            <div class="col-md-9">
-                <form class="d-flex" method="GET" action="{{ url_for('students.search_student') }}">
-                    <input class="form-control me-2" type="search" placeholder="Search a student" aria-label="Search" name="query">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
-            </div>
-
-        <!-- Add Student Button -->
-            <div class="col-md-3 text-md-right text-center">
-                <a href="{{ url_for('students.add_student') }}" class="btn btn-success">Add Student</a>
+        <div class="container">
+            <div class="row mb-3">
+                <!-- Search Bar -->
+                <div class="col-md-9">
+                    <form class="d-flex" method="GET" action="{{ url_for('students.search_student') }}">
+                        <input class="form-control me-2" type="search" placeholder="Search a student" aria-label="Search" name="query">
+                        <button class="btn btn-outline-success" type="submit">
+                            <i class="bi bi-search"></i>
+                        </button>
+                    </form>
+                </div>
+        
+                <!-- Buttons -->
+                <div class="col-md-3 d-flex justify-content-end align-items-center">
+                    <a href="{{ url_for('students.add_student') }}" class="btn btn-success me-2">
+                        <i class="bi bi-person-plus"></i> Create New
+                    </a>
+                    <a href="{{ url_for('students.student') }}" class="btn btn-dark">
+                        <i class="bi bi-list"></i> View List
+                    </a>
+                </div>
             </div>
         </div>
-    </div> 
+        
        
         <table class="table table-hover">
             <thead style="background-color: #7cc404;color: #dfdfdf;">
@@ -48,15 +56,17 @@
                                 </a>
                             </span>
 
-                                <span style="font-size: 24px;">
-                                    <a href="/{{ student[0] }}/delete"> 
-                                        <i class="fas fa-trash-alt" style="color: #F44336;"></i>
-                                    </a>
-                                </span>           
+                            <span style="font-size: 24px;"> 
+                                <button onclick="confirmDelete('{{ student[0] }}');" style="background:none;border:none;cursor:pointer;">
+                                    <i class="fas fa-trash-alt" style="color: #F44336;"></i>
+                                </button>
+                            </span>
+
                         </td>
                     </tr>
                 {% endfor %}
             </tbody>
         </table>
     </div>
+
 {% endblock content %}
