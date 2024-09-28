@@ -169,3 +169,5 @@ pyrightconfig.json
 .ionide
 
 node_modules/
+
+app/__pycache__/

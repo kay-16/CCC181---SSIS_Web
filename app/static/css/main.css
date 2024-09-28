@@ -37,6 +37,11 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 500;
 }
 
+.navbar-brand {
+    font-weight: bold;
+    color: #141f04;
+}
+
 .content-section {
     background: #dfdfdf;
     padding: 10px 20px;
@@ -45,7 +50,7 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: 20px;
     width: 100%;
     max-width: 600px; 
-    padding: 2rem; /* Updated for consistent padding */
+    padding: 2rem; 
 }
 
 
@@ -224,7 +229,7 @@ section a {
 
 .table {
     background-color: #dfdfdf; 
-    margin: 10 auto; /* Center the table horizontally */
+    margin: 10 auto; 
     border-collapse: collapse; 
     width: 80%; /* Width for the table */
     text-align: left; 
