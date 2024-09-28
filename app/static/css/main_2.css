@@ -42,64 +42,6 @@ h1, h2, h3, h4, h5, h6 {
     color: #141f04;
 }
 
-.content-section {
-    background: #dfdfdf;
-    padding: 10px 20px;
-    border: 1px solid #ffffff;
-    border-radius: 3px;
-    margin-bottom: 20px;
-    width: 100%;
-    max-width: 600px; 
-    padding: 2rem; /* Updated for consistent padding */
-}
-
-
-.article-title {
-    color: #444444;
-}
-
-a.article-title:hover {
-    color: #8ACE00;
-    text-decoration: none;
-}
-
-.article-content {
-    white-space: pre-line;
-}
-
-.article-img {
-    height: 65px;
-    width: 65px;
-    margin-right: 16px;
-}
-
-.article-metadata {
-    padding-bottom: 1px;
-    margin-bottom: 4px;
-    border-bottom: 1px solid #000000;
-}
-
-.article-metadata a:hover {
-    color: #ffffff;
-    text-decoration: none;
-}
-
-.article-svg {
-    width: 25px;
-    height: 25px;
-    vertical-align: middle;
-}
-
-.account-img {
-    height: 125px;
-    width: 125px;
-    margin-right: 20px;
-    margin-bottom: 16px;
-}
-
-.account-heading {
-    font-size: 2.5rem;
-}
 
 .input-box .input-field {
     width: 100%;
@@ -123,21 +65,11 @@ a.article-title:hover {
     width: 105%;
 }
 
-.forgot {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 40px;
-}
-
 section {
     display: flex;
     align-items: center;
     font-size: 14px;
     color: #555;
-}
-
-#check {
-    margin-right: 10px;
 }
 
 a {
@@ -166,6 +98,7 @@ section a {
     transition: .3s;
 }
 
+
 .input-submit label {
     position: absolute;
     top: 45%;
@@ -175,30 +108,13 @@ section a {
     cursor: pointer;
 }
 
-.submit-btn:hover {
-    background: #000;
-    transform: scale(1.05, 1);
-}
-
-.sign-up-link {
-    text-align: center;
-    font-size: 15px;
-    margin-top: 20px;
-}
-
-.sign-up-link a {
-    color: #000;
-    font-weight: 600;
-}
-
-/* Centering the form and the sign-up link */
 .center-form {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    min-height: 90vh;
-    transform: translateX(200px);
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+min-height: 90vh;
+transform: translateX(200px);
 }
 
 .border-top.pt-3 {
@@ -206,7 +122,7 @@ section a {
     margin-top: 1rem;
 }
 
-.table {
+table {
     background-color: #dfdfdf; 
     margin: 10 auto; /* Center the table horizontally */
     border-collapse: collapse; 
@@ -238,18 +154,21 @@ section a {
     border-bottom: none; /* Remove border from the last row */
 }
 
-.icon-edit {
-    color: #659406 ; /* Green for edit */
-}
-
-.icon-delete {
-    color: #F44336; /* Red for delete */
-}
-
 .add-student-btn {
     width: fit-content;
     display: inline-block;
-    margin-left: auto;
+    margin-right: auto;
+}
+
+.form-control-label {
+    color: #e0e0e0; 
+}
+
+fieldset legend {
+    color: #e0e0e0; /* Replace with your desired color */
+    font-weight: bold;
+    border-bottom: 2px solid #8ACE00; 
+    
 }
 
 

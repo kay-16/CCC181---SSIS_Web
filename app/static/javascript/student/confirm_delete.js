@@ -1,6 +1,6 @@
 function confirmDelete(studentId) {
     showYoyoPopup({
-        text: 'Are you sure to delete this student?',
+        text: 'Are you sure you want to delete this student?',
         subtext: 'THIS ACTION CANNOT BE UNDONE.',
         type: 'danger',
         isStatic: true,
@@ -9,7 +9,6 @@ function confirmDelete(studentId) {
         confirmLabel: 'Yes, Proceed',
         cancelLabel: 'Cancel',
         closeLabel: 'Close',
-        formId: '',  // if needed for form ID
         confirmFunction: () => {
             // If confirmed, submit the deletion form
             const form = document.createElement('form');
