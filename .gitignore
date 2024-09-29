@@ -171,3 +171,8 @@ pyrightconfig.json
 node_modules/
 
 app/__pycache__/
+app/college/__pycache__/
+app/login/__pycache__/
+app/main/__pycache__/
+app/programs/__pycache__/
+app/students/__pycache__/
