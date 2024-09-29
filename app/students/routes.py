@@ -131,7 +131,7 @@ def edit_student(id):
     return render_template('student/edit_student_form.html', title='Student | Edit', form=form, student=student)
 
 
-@students.route("/delete/<id_num>", methods=["POST", "GET"])
+@students.route("/delete/<id_num>", methods=["POST"])
 def delete_student(id_num):
     if request.method == "POST":
         try:
