@@ -1,7 +1,6 @@
-from flask import Blueprint
-from flask import Flask, render_template
+from flask import render_template
+from . import programs
 
-programs = Blueprint('programs', __name__)
 
 @programs.route("/programs")  
 def program():

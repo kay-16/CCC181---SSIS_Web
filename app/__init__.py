@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_mysqldb import MySQL
+from flask_wtf.csrf import CSRFProtect
 
 app = Flask(__name__)
 
@@ -14,9 +15,13 @@ from app.register.routes import register
 from app.login.routes import login
 from app.main.routes import main
 
+# Register blueprints
 app.register_blueprint(students)
 app.register_blueprint(programs)
 app.register_blueprint(college)
 app.register_blueprint(register)
 app.register_blueprint(login)
 app.register_blueprint(main)
+
+
+CSRFProtect(app)

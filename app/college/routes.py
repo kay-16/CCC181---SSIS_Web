@@ -1,7 +1,6 @@
-from flask import Blueprint
-from flask import Flask, render_template
+from flask import render_template
+from . import college
 
-college = Blueprint('college', __name__)
 
 @college.route("/college")  
 def colleges():

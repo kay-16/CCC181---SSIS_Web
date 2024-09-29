@@ -1,9 +1,8 @@
-from flask import Blueprint
-from flask import Flask, render_template, request, url_for, redirect, flash
+from flask import render_template, request, url_for, redirect, flash
 from app.students.controller import get_all_students, get_all_programs, add_student_to_db, search_students, edit_students, get_student_by_id, delete_students, check_id_exists
 from app.students.forms import StudentForms, EditStudentForms
+from . import students
 
-students = Blueprint('students', __name__)
 
 @students.route("/students")  
 def student():
@@ -30,7 +29,7 @@ def add_student():
         return redirect(url_for('students.add_student'))    # Redirect back to the student list in case of error
     
     if form.validate_on_submit():
-        
+
         try: 
         # Checks if ID entered already exists 
             if check_id_exists(form.id_number.data):
