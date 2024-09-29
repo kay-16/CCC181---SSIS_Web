@@ -10,7 +10,7 @@ def get_all_students():
     
     except Exception as e:
         print(f"An error occurred: {e}")
-        return None # Return None or handle the error as needed
+        return None # Handle the error as needed
     finally:
         if C:   
             C.close()   # Close the cursor
@@ -26,7 +26,7 @@ def get_all_programs():
     
     except Exception as e:
         print(f"An error occurred: {e}")
-        return None # Return None or handle the error as needed
+        return None # Handle the error as needed
     finally:
         if C:   
             C.close()   # Close the cursor
@@ -48,6 +48,21 @@ def add_student_to_db(student):
         print(f"An error occurred: {e}")
     finally:
         C.close()  # Close the cursor
+
+
+# Checks for duplicated ID
+def check_id_exists(id_number):
+    C = mysql.connection.cursor()
+    try:
+        C.execute("""SELECT EXISTS(SELECT 1 FROM student WHERE id_format = %s);""", (id_number,))
+        exists = C.fetchone()[0] > 0
+        return exists
+     
+    except Exception as e:
+        mysql.connection.rollback()  # In case of error
+        print(f"An error occurred: {e}")
+    finally:
+        C.close() # Close the cursor
 
 
 # Search students by all information

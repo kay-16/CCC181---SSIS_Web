@@ -1,6 +1,6 @@
 from flask import Blueprint
 from flask import Flask, render_template, request, url_for, redirect, flash
-from app.students.controller import get_all_students, get_all_programs, add_student_to_db, search_students, edit_students, get_student_by_id, delete_students
+from app.students.controller import get_all_students, get_all_programs, add_student_to_db, search_students, edit_students, get_student_by_id, delete_students, check_id_exists
 from app.students.forms import StudentForms, EditStudentForms
 
 students = Blueprint('students', __name__)
@@ -28,7 +28,12 @@ def add_student():
         return redirect(url_for('students.add_student'))    # Redirect back to the student list in case of error
     
     if form.validate_on_submit():
-        try:
+        try: 
+        # Checks if ID entered already exists 
+            if check_id_exists(form.id_number.data):
+                flash(f"ID number {form.id_number.data} already exists. Please enter a different ID.", "danger")
+                return redirect(url_for('students.add_student'))
+
         # Insert the added student into the database
             student_data = (
                 form.id_number.data,
@@ -55,7 +60,6 @@ def search_student():
     query = request.args.get('query')
 
     try:
-
         if query: # Call the search_students function and pass the search query
             students = search_students(query)
 
@@ -92,6 +96,11 @@ def edit_student(id):
          
     if request.method == 'POST' and form.validate_on_submit():
         try:
+            # Checks if ID entered already exists 
+            if check_id_exists(form.id_number.data):
+                flash(f"ID number {form.id_number.data} already exists. Please enter a different ID.", "danger")
+                return redirect(url_for('students.edit_student', id=id))
+            
             # Prepare data for update
             student_data = (
                 form.id_number.data,
