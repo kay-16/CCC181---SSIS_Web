@@ -176,3 +176,6 @@ app/login/__pycache__/
 app/main/__pycache__/
 app/programs/__pycache__/
 app/students/__pycache__/
+
+package-lock.json
+package.json 
