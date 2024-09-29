@@ -8,7 +8,8 @@ students = Blueprint('students', __name__)
 @students.route("/students")  
 def student():
     try:
-        students = get_all_students()
+        students = get_all_students() # Fetch all student from the database
+
     except Exception as e:
         flash(f"An error has occured while fetching students: {e}", "danger")
         return redirect(url_for('students.student'))    # Redirect back to the student list in case of error
@@ -22,12 +23,14 @@ def add_student():
     try:
         programs = get_all_programs()   # Fetch programs
         if programs:
-            form.stud_course_code.choices = [(program[0], f"{program[0]}, {program[1]}") for program in programs]
+            form.stud_course_code.choices = [(None, "Unenrolled")] + [(program[0], f"{program[0]}, {program[1]}") for program in programs]
+
     except Exception as e:
         flash(f"An error has occured while fetching students: {e}", "danger")
         return redirect(url_for('students.add_student'))    # Redirect back to the student list in case of error
     
     if form.validate_on_submit():
+        
         try: 
         # Checks if ID entered already exists 
             if check_id_exists(form.id_number.data):
@@ -41,7 +44,7 @@ def add_student():
                 form.last_name.data,
                 form.year_lvl.data,
                 form.gender.data,
-                form.stud_course_code.data
+                form.stud_course_code.data if form.stud_course_code.data != 'None' else None
             )
 
             add_student_to_db(student_data)

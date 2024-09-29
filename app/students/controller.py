@@ -77,12 +77,26 @@ def search_students(query):
                     OR sex = %s  
                     OR stud_course_code LIKE %s 
                 """
-        search_query = f"%{query}%"
+        
+        for_unenrolled_query = """
+                    SELECT * FROM student 
+                    WHERE stud_course_code IS NULL
+                """
+        
+        search_query = f"%{query}%" 
+
+        # Define all valid gender options
+        valid_sex_options = ['male', 'female', 'non-binary']
 
         # Determine if the query is specifically 'male' or 'female'
-        if query.lower() in ['male', 'female']:
-             # Use the exact value for 'sex' and wildcards for other fields
+        if query.lower() in valid_sex_options:
+            # Use the exact value for 'sex' and wildcards for other fields
             C.execute(search_statement, (search_query, search_query, search_query, query, search_query))
+
+        elif query.lower() == 'unenrolled':
+            # To fetch Null students in the database
+            C.execute(for_unenrolled_query)
+
         else:
             # Apply wildcards everywhere if it's not a 'sex' search
             C.execute(search_statement, (search_query, search_query, search_query, None, search_query))
