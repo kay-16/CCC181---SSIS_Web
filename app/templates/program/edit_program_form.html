@@ -1,0 +1,71 @@
+{% extends "layouts/package_layout.html" %}
+
+{% block title %} {{page_title}} {% endblock %}
+
+{% block content %}
+<div class="center-form">
+    <div class="content-section">
+        <form method="POST" action="{{ url_for('programs.edit_program', code=program[0]) }}">
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Edit Program</legend>
+                 
+                <!-- Form group for program code -->
+                <div class="form-group mb-3">
+                    {{ form.program_code.label(class="form-control-label") }}
+
+                    {% if form.program_code.errors %}
+                        {{ form.program_code(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.program_code.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.program_code(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+
+                <!-- Form group for program name --> 
+                <div class="form-group mb-3">
+                    {{ form.program_name.label(class="form-control-label") }}
+                    {% if form.program_name.errors %}
+                        {{ form.program_name(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.program_name.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.program_name(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+
+                 <!-- Form group for college where it belongs to -->
+                <div class="form-group mb-3">
+                    {{ form.college_belong.label(class="form-control-label") }}
+                    {% if form.college_belong.errors %}
+                        {{ form.college_belong(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.college_belong.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.college_belong(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+
+            </fieldset>
+
+            <div class="form-group">
+                <div class="mt-4">
+                {{ form.save(class="btn btn-success") }}
+                <a href="{{ url_for('programs.program') }}" class="btn btn-outline-danger">Cancel</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

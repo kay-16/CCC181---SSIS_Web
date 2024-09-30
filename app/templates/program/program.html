@@ -1,6 +1,66 @@
 {% extends "layouts/package_layout.html" %}
-{% block content %}
 
-    <h1>Program Page</h1>
+{% block content %}
+        <h1> Program Page </h1>
+
+        <div class="container">
+            <div class="row mb-2 align-items-center mt-5">
+                <!-- Search Bar -->
+                <div class="col-md-8">
+                    <form class="d-flex" method="GET" action="{{ url_for('programs.search_program') }}">
+                        <input class="form-control me-2" type="search" placeholder="Search a program" aria-label="Search" name="query">
+                        <button class="btn btn-outline-success" type="submit">
+                            <i class="bi bi-search"></i>
+                        </button>    
+                    </form>
+                </div>
+
+                <!-- Buttons -->
+                <div class="col-md-4 d-flex justify-content-end">
+                    <a href="{{ url_for('programs.add_program') }}" class="btn btn-success me-2">
+                        <i class="bi bi-plus-lg"></i> Create New
+                    </a>
+                    <a href="{{ url_for('programs.program') }}" class="btn btn-light">
+                        <i class="bi bi-list"></i> List
+                    </a>
+                </div>
+            </div>
+        </div>
+          <!-- Table -->
+          <table class="table table-hover mt-3">
+            <thead style="background-color: #7cc404;color: #dfdfdf;">
+                <tr> 
+                    <th>Program Code</th>
+                    <th>Program Name</th>
+                    <th>College</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            
+            <tbody>
+                {% for program in programs %}
+                    <tr>
+                        <td>{{ program[0] }}</td>  <!-- course_code -->
+                        <td>{{ program[1] }}</td>  <!-- course_name -->
+                        <td>{{ program[2] }}</td>  <!-- college_belong -->
+                        <td>
+                            <span style="font-size: 24px;">
+                                <a href="{{ url_for('programs.edit_program', code=program[0]) }}"> 
+                                    <i class="fas fa-edit" style="color: #659406;"></i>
+                                </a>
+                            </span>
+
+                            <span style="font-size: 24px;"> 
+                                <button onclick="confirmDeleteProgram('{{ program[0] }}');" style="background:none;border:none;cursor:pointer;">
+                                    <i class="fas fa-trash-alt" style="color: #F44336;"></i>
+                                </button>
+                            </span>
+
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 
 {% endblock content %}

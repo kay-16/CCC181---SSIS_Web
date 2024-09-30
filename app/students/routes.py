@@ -22,10 +22,10 @@ def add_student():
     try:
         programs = get_all_programs()   # Fetch programs
         if programs:
-            form.stud_course_code.choices = [(None, "Unenrolled")] + [(program[0], f"{program[0]}, {program[1]}") for program in programs]
+            form.stud_course_code.choices = [(None, "Unenrolled")] + [(program[0], f"{program[0]} - {program[1]}") for program in programs]
 
     except Exception as e:
-        flash(f"An error has occured while fetching students: {e}", "danger")
+        flash(f"An error has occurred while fetching students: {e}", "danger")
         return redirect(url_for('students.add_student'))    # Redirect back to the student list in case of error
     
     if form.validate_on_submit():
@@ -48,10 +48,10 @@ def add_student():
 
             add_student_to_db(student_data)
             flash(f'Added {form.first_name.data} {form.last_name.data} with ID number {form.id_number.data}!', 'success') 
-            return redirect(url_for('students.student')) # If validated, redirect the user to the home page
+            return redirect(url_for('students.student')) # If validated, redirect user back to student page
         
         except Exception as e:
-            flash(f"An error has occured while adding the student: {e}", "danger")
+            flash(f"An error has occurred while adding the student: {e}", "danger")
        
     return render_template('student/student_form.html', title='Student | Add', form=form, page_title="Add Student")
 
@@ -92,7 +92,8 @@ def edit_student(id):
     try:
         programs = get_all_programs()   # Fetch programs
         if programs:
-            form.stud_course_code.choices = [(program[0], f"{program[0]}, {program[1]}") for program in programs]
+            form.stud_course_code.choices = [(program[0], f"{program[0]} - {program[1]}") for program in programs]
+            
     except Exception as e:
         flash(f"An error has occured while fetching programs: {e}", "danger")
          
