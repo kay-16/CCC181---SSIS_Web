@@ -2,4 +2,4 @@ from flask import Blueprint
 
 college = Blueprint('college', __name__)
 
-from . import routes, forms
+from . import routes, controller, forms

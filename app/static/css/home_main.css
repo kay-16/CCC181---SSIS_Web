@@ -100,7 +100,7 @@ header {
 }
 
 .dropdown_menu.open{
-    height: 180px;   /* adjust dropdown menu height */
+    height: 80px;   /* adjust dropdown menu height */
 }
 
 .dropdown_menu li {

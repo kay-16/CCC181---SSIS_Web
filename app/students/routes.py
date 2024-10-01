@@ -30,7 +30,7 @@ def add_student():
     
     if form.validate_on_submit():
 
-        try: 
+        try:    
         # Checks if ID entered already exists 
             if check_id_exists(form.id_number.data):
                 flash(f"ID number {form.id_number.data} already exists. Please enter a different ID.", "danger")

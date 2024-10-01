@@ -22,9 +22,6 @@
       const csrfToken = "{{ csrf_token() }}";  // Pass CSRF token to JS
     </script>
   
-    
-     
-    
     {% if title %}
         <title>{{ title }}</title>
     {% else %}
@@ -42,14 +39,14 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarToggle">
               <div class="navbar-nav mr-auto">
-                <a class="nav-item nav-link" href="{{ url_for('main.home') }}">Home</a>
+                <a class="nav-item nav-link" href="{{ url_for('students.student') }}">Student</a>
+                <a class="nav-item nav-link" href="{{ url_for('programs.program') }}">Program</a>
+                <a class="nav-item nav-link" href="{{ url_for('college.colleges') }}">College</a>
               </div>
 
               <!-- Navbar Right Side -->
               <div class="navbar-nav ms-auto">
-                <a class="nav-item nav-link" href="{{ url_for('students.student') }}">Student</a>
-                <a class="nav-item nav-link" href="{{ url_for('programs.program') }}">Program</a>
-                <a class="nav-item nav-link" href="{{ url_for('college.colleges') }}">College</a>
+                <a class="nav-item nav-link" href="{{ url_for('main.home') }}">Log out</a>
               </div>
             </div>
           </div>
