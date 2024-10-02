@@ -56,24 +56,21 @@ def add_student():
     return render_template('student/student_form.html', title='Student | Add', form=form, page_title="Add Student")
 
 
-
 @students.route("/search", methods=["GET"])  
 def search_student():
-    query = request.args.get('query')
+    # fetch parameters
+    column_name = request.args.get("column-student-search", "id_format")
+    searched_data =  request.args.get("search-query", "")
 
     try:
-        if query: # Call the search_students function and pass the search query
-            students = search_students(query)
-
-        else:  # If no query, return all students or handle accordingly
-            students = get_all_students()
-
+        if searched_data:
+            student = search_students(column_name, searched_data)
+            return render_template('student/student.html', students=student, searched_data=searched_data, column_name=column_name)
+        
     except Exception as e:
         flash(f"An error has occured while searching for students: {e}", "danger")
-        return redirect(url_for('students.student'))  
-    
-    return render_template('student/student.html', students=students)
-
+          
+    return redirect(url_for('students.student'))
 
 
 @students.route("/edit/<id>", methods=["POST", "GET"])
@@ -99,8 +96,9 @@ def edit_student(id):
          
     if request.method == 'POST' and form.validate_on_submit():
         try:
-            # Checks if ID entered already exists 
-            if check_id_exists(form.id_number.data):
+            # Checks if program code entered already exists and;
+            # Checks if the program code entered is different from original 
+            if form.id_number.data != id and check_id_exists(form.id_number.data):
                 flash(f"ID number {form.id_number.data} already exists. Please enter a different ID.", "danger")
                 return redirect(url_for('students.edit_student', id=id))
             

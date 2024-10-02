@@ -49,26 +49,16 @@ def check_college_code_exists(col_code):
         C.close() # Close the cursor
 
 
-# Search college by all fields
-def search_colleges(query):
-    C = mysql.connection.cursor()
+# Fetch the college according to the search parameters
+def search_colleges(column, field):
     try:
-        search_statement = """
-                    SELECT * FROM college 
-                    WHERE col_course_code LIKE %s 
-                    OR college_name LIKE %s 
-                """
-     
-        search_query = f"%{query}%" 
-
-        C.execute(search_statement, (search_query, search_query))
-
-        results = C.fetchall()
-        return results
+        C = mysql.connection.cursor() 
+        C.execute(f"SELECT * FROM college WHERE {column} COLLATE utf8mb4_bin LIKE '%{field}%';")
+        return C.fetchall()
     
-    except Exception as e:
+    except mysql.connection.Error as e:
         mysql.connection.rollback()  # In case of error
-        print(f"An error occurred: {e}")
+        raise e
     finally:
         C.close()  # Close the cursor
 

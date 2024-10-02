@@ -50,20 +50,19 @@ def add_program():
 
 @programs.route("/programs/search", methods=["GET"])  
 def search_program():
-    s_query = request.args.get('query')
+    # fetch parameters
+    column_name = request.args.get("column-program-search", "col_course_code")
+    searched_data =  request.args.get("search-query", "")
 
     try:
-        if s_query: # Call the search_program function and pass the search query
-            programs = search_programs(s_query)
-
-        else:  # If no query, return all programs or handle accordingly
-            programs = get_programs()
-
+        if searched_data:
+            program = search_programs(column_name, searched_data)
+            return render_template('program/program.html', programs=program, searched_data=searched_data, column_name=column_name)
+        
     except Exception as e:
         flash(f"An error has occured while searching for programs: {e}", "danger")
-        return redirect(url_for('programs.program'))  
-    
-    return render_template('program/program.html', programs=programs)
+          
+    return redirect(url_for('programs.program'))
 
 
 @programs.route("/programs/edit/<code>", methods=["POST", "GET"])

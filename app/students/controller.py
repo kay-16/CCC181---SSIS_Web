@@ -4,7 +4,7 @@ from app import mysql
 def get_all_students():
     C = mysql.connection.cursor()
     try:
-        C.execute("SELECT id_format, last_name, first_name, year_lvl, sex, stud_course_code FROM student ORDER BY last_name, first_name ASC;")
+        C.execute("SELECT id_format, first_name, last_name, year_lvl, sex, stud_course_code FROM student ORDER BY last_name ASC;")
         rows = C.fetchall()
         return rows
     
@@ -65,48 +65,19 @@ def check_id_exists(id_number):
         C.close() # Close the cursor
 
 
-# Search students by all field
-def search_students(query):
-    C = mysql.connection.cursor()
+# Fetch the students according to the search parameters
+def search_students(column, field):
     try:
-        search_statement = """
-                    SELECT * FROM student 
-                    WHERE id_format LIKE %s 
-                    OR CONCAT(first_name, ' ', last_name ) LIKE %s 
-                    OR year_lvl LIKE %s 
-                    OR sex = %s  
-                    OR stud_course_code LIKE %s 
-                """
-        
-        for_unenrolled_query = """
-                    SELECT * FROM student 
-                    WHERE stud_course_code IS NULL
-                """
-        
-        search_query = f"%{query}%" 
-
-        # Define all valid gender options
-        valid_sex_options = ['male', 'female', 'non-binary']
-
-        # Determine if the query is specifically 'male' or 'female'
-        if query.lower() in valid_sex_options:
-            # Use the exact value for 'sex' and wildcards for other fields
-            C.execute(search_statement, (search_query, search_query, search_query, query, search_query))
-
-        elif query.lower() == 'unenrolled':
-            # To fetch Null students in the database
-            C.execute(for_unenrolled_query)
-
-        else:
-            # Apply wildcards everywhere if it's not a 'sex' search
-            C.execute(search_statement, (search_query, search_query, search_query, None, search_query))
-
-        results = C.fetchall()
-        return results
+        C = mysql.connection.cursor()
+        if field == "Unenrolled":
+            C.execute(f"SELECT * FROM student WHERE {column} IS NULL;")
+        else:    
+            C.execute(f"SELECT * FROM student WHERE {column} COLLATE utf8mb4_bin LIKE '%{field}%';")
+        return C.fetchall()
     
-    except Exception as e:
+    except mysql.connection.Error as e:
         mysql.connection.rollback()  # In case of error
-        print(f"An error occurred: {e}")
+        raise e
     finally:
         C.close()  # Close the cursor
 

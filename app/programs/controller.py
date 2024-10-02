@@ -50,27 +50,16 @@ def add_program_to_db(program):
         C.close()   # Close the cursor
 
 
-# Search programs by all information
-def search_programs(query):
-    C = mysql.connection.cursor()
+# Fetch the program according to the search parameters
+def search_programs(column, field):
     try:
-        search_statement = """
-                    SELECT course_code, course_name, college_belong
-                    FROM program 
-                    WHERE course_code LIKE %s 
-                    OR course_name LIKE %s 
-                    OR college_belong LIKE %s      
-                """        
-        search_query = f"%{query}%" 
-
-        C.execute(search_statement, (search_query, search_query, search_query))
-
-        results = C.fetchall()
-        return results
+        C = mysql.connection.cursor() 
+        C.execute(f"SELECT * FROM program WHERE {column} COLLATE utf8mb4_bin LIKE '%{field}%';")
+        return C.fetchall()
     
-    except Exception as e:
+    except mysql.connection.Error as e:
         mysql.connection.rollback()  # In case of error
-        print(f"An error occurred: {e}")
+        raise e
     finally:
         C.close()  # Close the cursor
 

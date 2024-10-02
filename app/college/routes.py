@@ -45,20 +45,19 @@ def add_college():
 
 @college.route("/college/search", methods=["GET"])  
 def search_college():
-    query = request.args.get('query')
+    # fetch parameters
+    column_name = request.args.get("column-college-search", "col_course_code")
+    searched_data =  request.args.get("search-query", "")
 
     try:
-        if query: # Call the search_colleges function and pass the search query
-            colleges = search_colleges(query)
-
-        else:  # If no query, return all college or handle accordingly
-            colleges = get_all_college()
-
+        if searched_data:
+            college = search_colleges(column_name, searched_data)
+            return render_template('college/college.html', colleges=college, searched_data=searched_data, column_name=column_name)
+        
     except Exception as e:
         flash(f"An error has occured while searching for colleges: {e}", "danger")
-        return redirect(url_for('college.colleges'))  
-    
-    return render_template('college/college.html', colleges=colleges)
+          
+    return redirect(url_for('college.colleges'))
 
 
 @college.route("/college/edit/<code>", methods=["POST", "GET"])

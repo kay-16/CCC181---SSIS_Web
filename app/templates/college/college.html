@@ -3,18 +3,20 @@
 {% block content %}
         <h1>College Page</h1>
 
-        <div class="container">
-            <div class="row mb-2 align-items-center mt-5">
-                <!-- Search Bar -->
-                <div class="col-md-8">
-                    <form class="d-flex" method="GET" action="{{ url_for('college.search_college') }}">
-                        <input class="form-control me-2" type="search" placeholder="Search a college" aria-label="Search" name="query">
+                <!-- Dropdown list for search by fields -->
+                <div class="operation-area">
+                    <div class="operations">
+                      <form class="d-flex" role="search" action="{{ url_for('college.search_college') }}" method="get">
+                        <select name="column-college-search" id="column-college-search" class="form-select-lg">
+                            <option class="columns-options" value="col_course_code" {% if column_name == 'col_course_code' %}selected{% endif %}>College Code</option>
+                            <option class="columns-options" value="college_name" {% if column_name == 'college_name' %}selected{% endif %}>College Name</option>
+                        </select>
+                        <input class="form-control me-2" id="search-query" type="search" placeholder="Search" aria-label="Search" name="search-query" value="{{ searched_data }}">
                         <button class="btn btn-outline-success" type="submit">
                             <i class="bi bi-search"></i>
                         </button>
-                    </form>
-                </div>
-        
+                    </form> 
+
                 <!-- Buttons -->
                 <div class="col-md-4 d-flex justify-content-end">
                     <a href="{{ url_for('college.add_college') }}" class="btn btn-success me-2">

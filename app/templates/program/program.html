@@ -3,17 +3,19 @@
 {% block content %}
         <h1> Program Page </h1>
 
-        <div class="container">
-            <div class="row mb-2 align-items-center mt-5">
-                <!-- Search Bar -->
-                <div class="col-md-8">
-                    <form class="d-flex" method="GET" action="{{ url_for('programs.search_program') }}">
-                        <input class="form-control me-2" type="search" placeholder="Search a program" aria-label="Search" name="query">
-                        <button class="btn btn-outline-success" type="submit">
-                            <i class="bi bi-search"></i>
-                        </button>    
-                    </form>
-                </div>
+        <!-- Dropdown list for search by fields -->
+        <div class="operation-area">
+            <div class="operations">
+              <form class="d-flex" role="search" action="{{ url_for('programs.search_program') }}" method="get">
+                <select name="column-program-search" id="column-program-search" class="form-select-lg">
+                    <option class="columns-options" value="course_code" {% if column_name == 'course_code' %}selected{% endif %}>Program Code</option>
+                    <option class="columns-options" value="course_name" {% if column_name == 'course_name' %}selected{% endif %}>Program Name</option>
+                    <option class="columns-options" value="college_belong" {% if column_name == 'college_belong' %}selected{% endif %}>College</option>
+                </select>
+                <input class="form-control me-2" id="search-query" type="search" placeholder="Search" aria-label="Search" name="search-query" value="{{ searched_data }}">
+                <button class="btn btn-outline-success" type="submit">
+                    <i class="bi bi-search"></i>
+                </button>
 
                 <!-- Buttons -->
                 <div class="col-md-4 d-flex justify-content-end">
