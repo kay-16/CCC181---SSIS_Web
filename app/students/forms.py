@@ -15,7 +15,7 @@ class StudentForms(FlaskForm):
                              render_kw={"placeholder": "Enter first name (e.g. Bruce)"})
     
     last_name = StringField('Last Name', validators=[DataRequired(message="Please fill out this field."), Length(min=2, max=60)],
-                            render_kw={"placeholder": "Enter last name (e.g. Wyane)"})
+                            render_kw={"placeholder": "Enter last name (e.g. Wayne)"})
     
     year_lvl = SelectField('Year Level', choices=[("1st Year","1st Year"),("2nd Year","2nd Year"),("3rd Year","3rd Year"),("4th Year","4th Year")])
     

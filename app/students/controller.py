@@ -65,7 +65,7 @@ def check_id_exists(id_number):
         C.close() # Close the cursor
 
 
-# Search students by all information
+# Search students by all field
 def search_students(query):
     C = mysql.connection.cursor()
     try:

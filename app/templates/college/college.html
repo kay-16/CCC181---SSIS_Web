@@ -7,7 +7,7 @@
             <div class="row mb-2 align-items-center mt-5">
                 <!-- Search Bar -->
                 <div class="col-md-8">
-                    <form class="d-flex" method="GET" action="#">
+                    <form class="d-flex" method="GET" action="{{ url_for('college.search_college') }}">
                         <input class="form-control me-2" type="search" placeholder="Search a college" aria-label="Search" name="query">
                         <button class="btn btn-outline-success" type="submit">
                             <i class="bi bi-search"></i>
@@ -43,7 +43,7 @@
                         <td>{{ college[1] }}</td>  <!-- college_name -->
                         <td>
                             <span style="font-size: 24px;">
-                                <a href="#"> 
+                                <a href="{{ url_for('college.edit_college', code=college[0]) }}"> 
                                     <i class="fas fa-edit" style="color: #659406;"></i>
                                 </a>
                             </span>

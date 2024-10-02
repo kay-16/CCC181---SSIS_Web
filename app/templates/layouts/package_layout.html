@@ -9,15 +9,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-    <script src="{{ url_for('static', filename='javascript/yoyo-popup.min.js') }}"></script>
     <!-- jsDelivr CDN -->
     <script src="https://cdn.jsdelivr.net/gh/smallvi/yoyoPopup@latest/dist/yoyoPopup.umd.min.js"></script>
 
-    <!-- unpkg CDN -->
-    <script src="https://unpkg.com/yoyo-popup@latest/dist/yoyoPopup.umd.min.js"></script>
-
     <script src="{{ url_for('static', filename='javascript/student/confirm_delete.js') }}"></script>
     <script src="{{ url_for('static', filename='javascript/program/confirm_delete.js') }}"></script>
+    <script src="{{ url_for('static', filename='javascript/college/confirm_delete.js') }}"></script>
     <script type="text/javascript">
       const csrfToken = "{{ csrf_token() }}";  // Pass CSRF token to JS
     </script>
