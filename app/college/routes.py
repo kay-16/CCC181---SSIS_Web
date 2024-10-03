@@ -46,7 +46,7 @@ def add_college():
 @college.route("/college/search", methods=["GET"])  
 def search_college():
     # fetch parameters
-    column_name = request.args.get("column-college-search", "col_course_code")
+    column_name = request.args.get("column-search", "col_course_code")
     searched_data =  request.args.get("search-query", "")
 
     try:

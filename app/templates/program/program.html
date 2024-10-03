@@ -1,34 +1,30 @@
 {% extends "layouts/package_layout.html" %}
 
 {% block content %}
-        <h1> Program Page </h1>
+        <h1 style="margin-bottom: 70px;"> Program Page </h1>
 
-        <!-- Dropdown list for search by fields -->
-        <div class="operation-area">
-            <div class="operations">
-              <form class="d-flex" role="search" action="{{ url_for('programs.search_program') }}" method="get">
-                <select name="column-program-search" id="column-program-search" class="form-select-lg">
-                    <option class="columns-options" value="course_code" {% if column_name == 'course_code' %}selected{% endif %}>Program Code</option>
-                    <option class="columns-options" value="course_name" {% if column_name == 'course_name' %}selected{% endif %}>Program Name</option>
-                    <option class="columns-options" value="college_belong" {% if column_name == 'college_belong' %}selected{% endif %}>College</option>
-                </select>
-                <input class="form-control me-2" id="search-query" type="search" placeholder="Search" aria-label="Search" name="search-query" value="{{ searched_data }}">
-                <button class="btn btn-outline-success" type="submit">
-                    <i class="bi bi-search"></i>
-                </button>
-
-                <!-- Buttons -->
-                <div class="col-md-4 d-flex justify-content-end">
-                    <a href="{{ url_for('programs.add_program') }}" class="btn btn-success me-2">
-                        <i class="bi bi-plus-lg"></i> Create New
-                    </a>
-                    <a href="{{ url_for('programs.program') }}" class="btn btn-light">
-                        <i class="bi bi-list"></i> List
-                    </a>
+                <!-- Dropdown list for search by fields -->
+                <div class="operation-area d-flex justify-content-between align-items-center">
+                    <form class="d-flex" role="search" action="{{ url_for('programs.search_program') }}" method="get">
+                        <select name="column-search" id="column-search" class="form-select-lg me-2">
+                            <option value="course_code" {% if column_name == 'course_code' %}selected{% endif %}>Program Code</option>
+                            <option value="course_name" {% if column_name == 'course_name' %}selected{% endif %}>Program Name</option>
+                            <option value="college_belong" {% if column_name == 'college_belong' %}selected{% endif %}>College</option>
+                        </select>
+                        <input class="form-control me-2" id="search-query" type="search" placeholder="Search" aria-label="Search" name="search-query" value="{{ searched_data }}" style="width: 700px;">
+                        <button class="btn btn-outline-success" type="submit"><i class="bi bi-search"></i></button>
+                    </form>
+                    <div class="d-flex justify-content-end">
+                        <a href="{{ url_for('programs.program') }}" class="btn btn-light me-2">
+                            <i class="bi bi-list"></i> List
+                        </a>
+                            <a href="{{ url_for('programs.add_program') }}" class="btn btn-success">
+                                <i class="bi bi-plus-lg"></i> Create New
+                            </a>
+                    </div>
                 </div>
-            </div>
-        </div>
-          <!-- Table -->
+            
+        <!-- Table -->
           <table class="table table-hover mt-3">
             <thead style="background-color: #7cc404;color: #dfdfdf;">
                 <tr> 

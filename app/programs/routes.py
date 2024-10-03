@@ -51,7 +51,7 @@ def add_program():
 @programs.route("/programs/search", methods=["GET"])  
 def search_program():
     # fetch parameters
-    column_name = request.args.get("column-program-search", "col_course_code")
+    column_name = request.args.get("column-search", "col_course_code")
     searched_data =  request.args.get("search-query", "")
 
     try:

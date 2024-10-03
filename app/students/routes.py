@@ -59,7 +59,7 @@ def add_student():
 @students.route("/search", methods=["GET"])  
 def search_student():
     # fetch parameters
-    column_name = request.args.get("column-student-search", "id_format")
+    column_name = request.args.get("column-search", "id_format")
     searched_data =  request.args.get("search-query", "")
 
     try:

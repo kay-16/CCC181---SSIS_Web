@@ -10,7 +10,7 @@
 body {
     display: flex;
     justify-content: center;
-    align-items: top;
+    align-items: flex-start;
     min-height: 100vh;
     background: #000000d3; 
     color: #333333;
@@ -113,8 +113,7 @@ display: flex;
 justify-content: center;
 align-items: center;
 flex-direction: column;
-min-height: 90vh;
-transform: translateX(200px);
+
 }
 
 .border-top.pt-3 {
@@ -122,16 +121,22 @@ transform: translateX(200px);
     margin-top: 1rem;
 }
 
+
+/* This centers the table container horizontally */
+.table-container {
+    width: 100%;
+    margin-top: 20px; /* Optional: Adjust margin as needed */
+}
+
+/* This applies to all tables */
 table {
-    background-color: #dfdfdf; 
-    margin: 10 auto; /* Center the table horizontally */
-    border-collapse: collapse; 
-    width: 80%; /* Width for the table */
-    text-align: left; 
+    width: 100%; /* Adjust the table width based on your design */
+    border-collapse: collapse;
+    table-layout: auto;
 }
 
 .table th, .table td {
-    padding:10px 45px; /* Padding for spacing between text and cell edges */
+    padding:15px 45px; /* Padding for spacing between text and cell edges */
     white-space: nowrap; /* Prevent text from wrapping into multiple lines */
 }
 
@@ -170,5 +175,3 @@ fieldset legend {
     border-bottom: 2px solid #8ACE00; 
     
 }
-
-
