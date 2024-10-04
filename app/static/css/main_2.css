@@ -85,7 +85,7 @@ a {
 }
 
 a:hover {
-    text-decoration: underline;
+    text-decoration:double;
 }
 
 section a {
@@ -229,3 +229,26 @@ fieldset legend {
 #column-search {
     transition: border-color 0.3s ease; /* Smooth transition for border color */
 }
+
+.logout_btn {
+    background-color: #8ACE00 ;
+    color: rgb(0, 0, 0);
+    padding: 0.5rem 1rem;
+    border: none;
+    outline: none;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: scale 0.2 ease;
+}
+
+.logout_btn:hover {
+    scale: 1.05;
+    color: black;
+}
+
+.logout_btn:active {
+    scale: 0.95;
+}
+

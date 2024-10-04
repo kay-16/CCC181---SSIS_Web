@@ -118,11 +118,12 @@ def edit_programs(program):
 
 # Removes program data based on course code
 def delete_programs(program_code):
-    C  = mysql.connection.cursor()
+    C = mysql.connection.cursor()
     try:
+        # Delete the program
         delete_statement = """ DELETE FROM program WHERE course_code = %s; """
-
         C.execute(delete_statement, (program_code,))
+
         mysql.connection.commit() 
         
     except Exception as e:

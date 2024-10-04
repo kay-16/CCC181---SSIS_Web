@@ -13,7 +13,6 @@ body {
     background-image: linear-gradient(rgba(39, 56, 6, 0.295),rgba(101, 148, 6, 0.822)), 
     url('https://images.unsplash.com/photo-1579546929593-b824f1e71808?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
     background-size: cover;
-    background-position: center;
 }
 
 li {
@@ -87,7 +86,7 @@ header {
     scale: 0.95;
 }
 
-/* DROPDOWN  MENU */
+/* DROPDOWN MENU */
 .dropdown_menu {
     display: none;
     position: absolute;
@@ -103,7 +102,7 @@ header {
 }
 
 .dropdown_menu.open{
-    height: 80px;   /* adjust dropdown menu height */
+    height: 80px;   /* dropdown menu height */
 }
 
 .dropdown_menu li {

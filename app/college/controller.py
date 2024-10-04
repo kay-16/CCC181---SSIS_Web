@@ -102,11 +102,11 @@ def edit_colleges(college):
 
 # Removes college data based on college code
 def delete_colleges(delete_college):
-    C  = mysql.connection.cursor()
+    C = mysql.connection.cursor()
     try:
-        delete_statement = """ DELETE FROM college WHERE col_course_code = %s; """
-
+        delete_statement = """ DELETE FROM college WHERE col_course_code = %s; """  
         C.execute(delete_statement, (delete_college,))
+
         mysql.connection.commit() 
         
     except Exception as e:

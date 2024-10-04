@@ -109,7 +109,7 @@ def edit_program(code):
             )
 
             edit_programs(program_data) # Calls edit function
-            flash("Program updated successfully", "success")
+            flash("Program has been updated successfully", "success")
             return redirect(url_for('programs.program'))  # Redirect back to program list after edit
         except Exception as e:
             flash(f"An error has occured while updating the program: {e}", "danger")
@@ -126,18 +126,13 @@ def edit_program(code):
 def delete_program(prog_code):
     if request.method == "POST":
         try:
-            program = get_program_by_code(prog_code) # Fetch program by their program code
-            if not program:
-                flash("Program Not Found", "danger")
-                return redirect(url_for('programs.program'))
-                
             delete_programs(prog_code)
-            flash(f"Program with code {prog_code} is deleted successfully!", "success")
+            flash(f"Program {prog_code} is deleted successfully!", "success")
 
         except Exception as e:
             flash(f"Database error: {str(e)}", "danger")
 
-    else: # Prevents user from attempting to delete a program in the URL
+    else: # Prevents user from attempting to delete a student in the URL
         flash(f"WARNING: Do not attempt to delete a program directly via URL!", "danger")
 
     return redirect(url_for('programs.program'))

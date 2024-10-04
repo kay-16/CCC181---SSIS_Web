@@ -101,22 +101,17 @@ def edit_college(code):
     return render_template('college/edit_college_form.html', title='College | Edit', form=form, college=college)
 
 
-@college.route("/delete/<id_num>", methods=["POST"])
+@college.route("/college/delete/<col_code>", methods=["POST"])
 def delete_college(col_code):
     if request.method == "POST":
         try:
-            college = get_college_by_code(col_code) # Fetch college by their college code
-            if not college:
-                flash("College Not Found", "danger")
-                return redirect(url_for('college.colleges'))
-                
             delete_colleges(col_code)
             flash(f"College {col_code} is deleted successfully!", "success")
 
         except Exception as e:
             flash(f"Database error: {str(e)}", "danger")
 
-    else: # Prevents user from attempting to delete a college in the URL
+    else: # Prevents user from attempting to delete a student in the URL
         flash(f"WARNING: Do not attempt to delete a college directly via URL!", "danger")
 
     return redirect(url_for('college.colleges'))
