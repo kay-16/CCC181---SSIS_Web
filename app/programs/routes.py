@@ -31,6 +31,12 @@ def add_program():
     if form.validate_on_submit():
 
         try:
+            # Checks if college code entered already exists 
+            if check_course_code_exists(form.program_code.data):
+                flash(f"Program code {form.program_code.data} already exists. Please enter a different code.", "danger")
+                return redirect(url_for('programs.add_program'))
+
+
         # Insert the added program into the database
             program_data = (
                 form.program_code.data,

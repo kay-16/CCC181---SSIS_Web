@@ -10,7 +10,6 @@
 body {
     display: flex;
     justify-content: center;
-    align-items: flex-start;
     min-height: 100vh;
     background: #000000d3; 
     color: #333333;
@@ -41,7 +40,6 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: bold;
     color: #141f04;
 }
-
 
 .input-box .input-field {
     width: 100%;
@@ -98,7 +96,6 @@ section a {
     transition: .3s;
 }
 
-
 .input-submit label {
     position: absolute;
     top: 45%;
@@ -112,8 +109,29 @@ section a {
 display: flex;
 justify-content: center;
 align-items: center;
+min-height: calc(100vh - 5rem); /* Ensure the height covers the visible screen */
 flex-direction: column;
+width: 100%; /* Ensure full width */
+}
 
+.content-section {
+    width: 100%; /* Expand content-section to full width */
+    max-width: 800px; /* Set a maximum width to avoid the form being too wide */
+    padding: 2rem; /* Add padding for better spacing */
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.4); /* Optional: Add a slight shadow for better aesthetics */
+}
+
+form .form-group {
+    margin-bottom: 1.5rem; /* Increase spacing between form fields */
+}
+
+form .form-control-lg {
+    width: 100%; /* Make input fields expand to the width of the form */
+    padding: 0.75rem; /* Increase padding for a larger appearance */
+}
+
+form .form-control-label {
+    color: #e0e0e0; 
 }
 
 .border-top.pt-3 {
@@ -121,16 +139,14 @@ flex-direction: column;
     margin-top: 1rem;
 }
 
-
-/* This centers the table container horizontally */
 .table-container {
     width: 100%;
-    margin-top: 20px; /* Optional: Adjust margin as needed */
+    margin-top: 20px; 
 }
 
 /* This applies to all tables */
 table {
-    width: 100%; /* Adjust the table width based on your design */
+    width: 100%; 
     border-collapse: collapse;
     table-layout: auto;
 }
@@ -156,7 +172,7 @@ table {
 }
 
 .table tbody tr:last-child {
-    border-bottom: none; /* Remove border from the last row */
+    border-bottom: none; /* Removes border from the last row */
 }
 
 .add-student-btn {
@@ -165,13 +181,38 @@ table {
     margin-right: auto;
 }
 
-.form-control-label {
-    color: #e0e0e0; 
+fieldset legend {
+    color: #e0e0e0;
+    font-weight: bold;
+    border-bottom: 2px solid #8ACE00;     
 }
 
-fieldset legend {
-    color: #e0e0e0; /* Replace with your desired color */
-    font-weight: bold;
-    border-bottom: 2px solid #8ACE00; 
-    
+/*DROPDOWN*/
+
+/* Dropdown styling */
+#column-search {
+    background-color: #414141; /* Dropdown background color */
+    color: #e0e0e0; /* Dropdown text color */
+    border: 1px solid #8ACE00; /* Optional: border styling */
+    border-radius: 4px; /* Optional: rounded corners */
+    padding: 10px; /* Add padding for better spacing */
+    appearance: none; /* Remove default arrow */
+    position: relative; /* To position pseudo-elements */
+}
+
+
+#column-search option {
+    background-color: #414141; /* Background color for options */
+    color: #e0e0e0; /* Text color for options */
+}
+
+/* Focus effect */
+#column-search:focus {
+    outline: none; /* Remove default focus outline */
+    border-color: #78b800; /* Change border color on focus */
+}
+
+/* Transition effects */
+#column-search {
+    transition: border-color 0.3s ease; /* Smooth transition for border color */
 }

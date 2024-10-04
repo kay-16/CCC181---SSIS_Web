@@ -6,7 +6,7 @@
                 <!-- Dropdown list for search by fields -->
                 <div class="operation-area d-flex justify-content-between align-items-center">
                       <form class="d-flex" role="search" action="{{ url_for('students.search_student') }}" method="get">
-                        <select name="column-search" id="column-student-search" class="form-select-lg me-2">
+                        <select name="column-search" id="column-search" class="form-select-lg me-2">
                             <option class="columns-options" value="id_format" {% if column_name == 'id_format' %}selected{% endif %}>ID Number</option>
                             <option class="columns-options" value="first_name" {% if column_name == 'first_name' %}selected{% endif %}>First Name</option>
                             <option class="columns-options" value="last_name" {% if column_name == 'last_name' %}selected{% endif %}>Last Name</option>
@@ -14,11 +14,11 @@
                             <option class="columns-options" value="sex" {% if column_name == 'sex' %}selected{% endif %}>Gender</option>
                             <option class="columns-options" value="stud_course_code" {% if column_name == 'stud_course_code' %}selected{% endif %}>Program</option>
                         </select>
+
                         <input class="form-control me-2" id="search-query" type="search" placeholder="Search" aria-label="Search" name="search-query" value="{{ searched_data }}" style="width: 700px;">
                         <button class="btn btn-outline-success" type="submit"><i class="bi bi-search"></i></button>
                     </form> 
                     <div class="d-flex justify-content-end">
-                        
                         <a href="{{ url_for('students.student') }}" class="btn btn-light me-2">
                             <i class="bi bi-list"></i> List
                         </a>
@@ -27,6 +27,7 @@
                             </a>
                     </div>
                 </div>
+        
 
         <!-- Table -->
         <table class="table table-hover mt-3">
