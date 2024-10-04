@@ -1,7 +1,7 @@
 function confirmDeleteProgram(courseCode) {
     showYoyoPopup({
         text: `Warning! Are you sure you want to delete ${courseCode}?`,
-        subtext: `Note: THIS ACTION CANNOT BE UNDONE. Once deleted, all students enrolled in ${courseCode} will be unenrolled.`,
+        subtext: `Note: This action cannot be undone. Once deleted, all students enrolled in ${courseCode} will be unenrolled.`,
         type: 'danger', 
         isStatic: true,
         hasConfirmation: true,

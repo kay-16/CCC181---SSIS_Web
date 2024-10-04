@@ -1,7 +1,7 @@
 function confirmDeleteCollege(collegeCode) {
     showYoyoPopup({
         text: `Warning! Are you sure you want to delete ${collegeCode}?`,
-        subtext: `Note: THIS ACTION CANNOT BE UNDONE. Once deleted, all programs under ${collegeCode} will be deleted and students will be marked 'Unenrolled'.`,
+        subtext: `Note: This action cannot be undone. Once deleted, all programs under ${collegeCode} will be deleted and students will be marked 'Unenrolled'.`,
         type: 'danger', 
         isStatic: true,
         hasConfirmation: true,

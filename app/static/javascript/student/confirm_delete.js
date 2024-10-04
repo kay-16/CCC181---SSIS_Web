@@ -1,7 +1,7 @@
 function confirmDeleteStudent(studentId) {
     showYoyoPopup({
         text: `Warning! Are you sure you want to delete student with ID number ${studentId}?`,
-        subtext: 'Note: THIS ACTION CANNOT BE UNDONE.',
+        subtext: 'This action cannot be undone.',
         type: 'danger',
         isStatic: true,
         hasConfirmation: true,

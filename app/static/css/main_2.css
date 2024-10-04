@@ -17,19 +17,19 @@ body {
     background-image: linear-gradient(rgba(14, 13, 13, 0.603),rgba(101, 148, 6, 0.603)), 
     url('https://images.unsplash.com/photo-1614854262318-831574f15f1f?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
     background-size: cover;
-    background-attachment: fixed; /* Keep the background fixed while scrolling */
-    background-position: center; /* Center the background */
-    margin-top: 5rem; /* Adjust as needed */
-    overflow: auto; /* Allow scrolling if content exceeds the viewport */
+    background-attachment: fixed; 
+    background-position: center; 
+    margin-top: 5rem; 
+    overflow: auto; 
 }
 
 h1, h2, h3, h4, h5, h6 {
-    color: #000000;
+    color: #141414d5;
 }
 
 .bg-steel {
     background-color: #000; 
-    background-image: linear-gradient(rgba(101, 148, 6, 0.692),rgba(12, 11, 11, 0.534)), 
+    background-image: linear-gradient(rgba(101, 148, 6, 0.692),rgba(12, 11, 11, 0.459)), 
     url('https://images.unsplash.com/photo-1614854262318-831574f15f1f?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
     background-size: cover;
 }
@@ -42,13 +42,14 @@ h1, h2, h3, h4, h5, h6 {
     color: #8ACE00;
 }
 
-.site-header .navbar-nav .nav-link.active {
-    font-weight: 500;
-}
-
 .navbar-brand {
     font-weight: bold;
     color: #fafaf9;
+}
+
+.navbar-nav .nav-link {
+    font-size: 0.9rem; 
+    margin-right: 20px;
 }
 
 .input-box .input-field {
@@ -125,14 +126,22 @@ width: 100%; /* Ensure full width */
 }
 
 .content-section {
-    width: 100%; /* Expand content-section to full width */
-    max-width: 800px; /* Set a maximum width to avoid the form being too wide */
-    padding: 2rem; /* Add padding for better spacing */
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.4); /* Optional: Add a slight shadow for better aesthetics */
+    width: 100%; 
+    max-width: 800px;
+    padding: 2rem;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.4); 
+    background-color: #000;
+    background-image: linear-gradient(rgba(39, 56, 6, 0.295),rgba(101, 148, 6, 0.822)), 
+    url('https://images.unsplash.com/photo-1614854262318-831574f15f1f?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+    padding: 2rem;
+    border: none;
+    border-radius: 3px;
+    margin-bottom: 20px;
+    
 }
 
 form .form-group {
-    margin-bottom: 1.5rem; /* Increase spacing between form fields */
+    margin-bottom: 1.5rem; 
 }
 
 form .form-control-lg {
@@ -141,7 +150,7 @@ form .form-control-lg {
 }
 
 form .form-control-label {
-    color: #e0e0e0; 
+    color: #272727; 
 }
 
 .border-top.pt-3 {
@@ -155,37 +164,38 @@ form .form-control-label {
 }
 
 /* TABLES */
+
 table {
     width: 100%; 
     border-collapse: collapse;
     table-layout: auto;
     border-radius: 10px 10px 0 0;
     overflow: hidden;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.36);
 }
 
 .table th, .table td {
     padding:15px 45px; /* Padding for spacing between text and cell edges */
-    white-space: nowrap; /* Prevent text from wrapping into multiple lines */
+    white-space: nowrap; 
 }
 
 .table th {
-    background-color: #8ACE00; /* Header background color */
-    color: black; /* Header text color */
+    background-color: #8ACE00; 
+    color: black;
     text-align: center; 
 }
 
 .table td {
-    color: #333; /* Table cell text color */
-    text-align: center; /* Center text in table cells */
+    color: #141414d5; 
+    text-align: center; 
 }
 
 .table tbody tr {
-    border-bottom: 2px solid #8ACE00; /* Border between rows */
+    border-bottom: 2px solid #8ACE00;
 }
 
 .table tbody tr:last-child {
-    border-bottom: 5px solid #8ACE00; /* Removes border from the last row */
+    border-bottom: 5px solid #8ACE00;
 }
 
 .add-student-btn {
@@ -195,39 +205,31 @@ table {
 }
 
 fieldset legend {
-    color: #e0e0e0;
+    color: #1b1b1b;
     font-weight: bold;
-    border-bottom: 2px solid #8ACE00;     
+    border-bottom: 2px solid #9feb08;     
 }
 
 /*DROPDOWN*/
 
-/* Dropdown styling */
 #column-search {
-    background-color: #f8f8f8; /* Dropdown background color */
-    color: #141414; /* Dropdown text color */
-    border: 2px solid #8ACE00; /* Optional: border styling */
-    border-radius: 10px; /* Optional: rounded corners */
-    padding: 10px; /* Add padding for better spacing */
+    background-color: #f8f8f8; 
+    color: #141414; 
+    border: 2px solid #8ACE00; 
+    border-radius: 10px; 
+    padding: 10px;
     appearance: none; /* Remove default arrow */
-    position: relative; /* To position pseudo-elements */
+    position: relative;
 }
-
 
 #column-search option {
-    background-color: #414141; /* Background color for options */
-    color: #e0e0e0; /* Text color for options */
+    background-color: #414141; 
+    color: #e0e0e0; 
 }
 
-/* Focus effect */
 #column-search:focus {
-    outline: none; /* Remove default focus outline */
-    border-color: #78b800; /* Change border color on focus */
-}
-
-/* Transition effects */
-#column-search {
-    transition: border-color 0.3s ease; /* Smooth transition for border color */
+    outline: none; 
+    border-color: #8ACE00; 
 }
 
 .logout_btn {
