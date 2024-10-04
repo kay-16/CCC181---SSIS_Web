@@ -13,7 +13,7 @@ function confirmDeleteCollege(collegeCode) {
             // If confirmed, submit the deletion form
             const form = document.createElement('form');
             form.method = 'POST';
-            form.action = `/programs/delete/${collegeCode}`;  // Ensure the action matches the route
+            form.action = `/college/delete/${collegeCode}`;  // Ensure the action matches the route
 
             // Create hidden input for CSRF token
             const csrfInput = document.createElement('input');
