@@ -14,8 +14,8 @@ html, body {
 body {
     height: 100vh;
     background-color: #000; 
-    background-image: linear-gradient(rgba(14, 13, 13, 0.603),rgba(101, 148, 6, 0.822)), 
-    url('https://images.unsplash.com/photo-1579546929593-b824f1e71808?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+    background-image: linear-gradient(rgba(14, 13, 13, 0.603),rgba(101, 148, 6, 0.603)), 
+    url('https://images.unsplash.com/photo-1614854262318-831574f15f1f?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
     background-size: cover;
     background-attachment: fixed; /* Keep the background fixed while scrolling */
     background-position: center; /* Center the background */
@@ -24,19 +24,22 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    color: #ffffff;
+    color: #000000;
 }
 
 .bg-steel {
-    background-color: #8ad000;
+    background-color: #000; 
+    background-image: linear-gradient(rgba(101, 148, 6, 0.692),rgba(12, 11, 11, 0.534)), 
+    url('https://images.unsplash.com/photo-1614854262318-831574f15f1f?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+    background-size: cover;
 }
 
 .site-header .navbar-nav .nav-link {
-    color: #141f04;
+    color: #fafaf9;
 }
 
 .site-header .navbar-nav .nav-link:hover {
-    color: #ffffff;
+    color: #8ACE00;
 }
 
 .site-header .navbar-nav .nav-link.active {
@@ -45,7 +48,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .navbar-brand {
     font-weight: bold;
-    color: #141f04;
+    color: #fafaf9;
 }
 
 .input-box .input-field {
@@ -151,11 +154,14 @@ form .form-control-label {
     margin-top: 20px; 
 }
 
-/* This applies to all tables */
+/* TABLES */
 table {
     width: 100%; 
     border-collapse: collapse;
     table-layout: auto;
+    border-radius: 10px 10px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.35);
 }
 
 .table th, .table td {
@@ -179,7 +185,7 @@ table {
 }
 
 .table tbody tr:last-child {
-    border-bottom: none; /* Removes border from the last row */
+    border-bottom: 5px solid #8ACE00; /* Removes border from the last row */
 }
 
 .add-student-btn {
@@ -201,7 +207,7 @@ fieldset legend {
     background-color: #f8f8f8; /* Dropdown background color */
     color: #141414; /* Dropdown text color */
     border: 2px solid #8ACE00; /* Optional: border styling */
-    border-radius: 4px; /* Optional: rounded corners */
+    border-radius: 10px; /* Optional: rounded corners */
     padding: 10px; /* Add padding for better spacing */
     appearance: none; /* Remove default arrow */
     position: relative; /* To position pseudo-elements */
