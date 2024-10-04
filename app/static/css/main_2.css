@@ -7,13 +7,20 @@
     font-family: 'Poppins', sans-serif;
 }
 
+html, body {
+    height: 100%; /* Ensure html and body take full height */
+}
+
 body {
-    display: flex;
-    justify-content: center;
-    min-height: 100vh;
-    background: #000000d3; 
-    color: #333333;
-    margin-top: 5rem;
+    height: 100vh;
+    background-color: #000; 
+    background-image: linear-gradient(rgba(14, 13, 13, 0.603),rgba(101, 148, 6, 0.822)), 
+    url('https://images.unsplash.com/photo-1579546929593-b824f1e71808?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+    background-size: cover;
+    background-attachment: fixed; /* Keep the background fixed while scrolling */
+    background-position: center; /* Center the background */
+    margin-top: 5rem; /* Adjust as needed */
+    overflow: auto; /* Allow scrolling if content exceeds the viewport */
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -191,9 +198,9 @@ fieldset legend {
 
 /* Dropdown styling */
 #column-search {
-    background-color: #414141; /* Dropdown background color */
-    color: #e0e0e0; /* Dropdown text color */
-    border: 1px solid #8ACE00; /* Optional: border styling */
+    background-color: #f8f8f8; /* Dropdown background color */
+    color: #141414; /* Dropdown text color */
+    border: 2px solid #8ACE00; /* Optional: border styling */
     border-radius: 4px; /* Optional: rounded corners */
     padding: 10px; /* Add padding for better spacing */
     appearance: none; /* Remove default arrow */
