@@ -132,7 +132,7 @@ def delete_program(prog_code):
         except Exception as e:
             flash(f"Database error: {str(e)}", "danger")
 
-    else: # Prevents user from attempting to delete a student in the URL
+    else: # Prevents user from attempting to delete a program in the URL
         flash(f"WARNING: Do not attempt to delete a program directly via URL!", "danger")
 
     return redirect(url_for('programs.program'))

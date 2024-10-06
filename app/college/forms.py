@@ -7,7 +7,7 @@ class CollegeForms(FlaskForm):
     college_code = StringField('College Code', validators=[
         DataRequired(message="Please fill out this field. "), 
         Length(min=2, max=50, message="College code must be at least 2 characters minimum and 50 characters maximum."),  
-        Regexp(regex="^[A-Z]+$", message="Use capital letters only and no space allowed.")
+        Regexp(regex="^[A-Z]+$", message="Use capital letters only and no spaces allowed.")
         ],
         render_kw={"placeholder": "Enter college code (e.g. CCS)"})
     
@@ -24,7 +24,7 @@ class EditCollegeForms(FlaskForm):
     college_code = StringField('College Code', validators=[
         DataRequired(message="Please fill out this field."), 
         Length(min=2, max=50, message="College code must be at least 2 characters minimum and 50 characters maximum."),  
-        Regexp(regex="^[A-Z]+$", message="Use capital letters only and no space allowed.")
+        Regexp(regex="^[A-Z]+$", message="Use capital letters only and no spaces allowed.")
         ],
         render_kw={"placeholder": "Enter college code (e.g. CCS)"})
     

@@ -6,10 +6,10 @@ from . import login
 @login.route("/login", methods=['GET', 'POST'])  
 def logins():
     form = LoginForm()
-    if form.validate_on_submit(): # for now, this is the only email & password that is accepted
+    if form.validate_on_submit(): # Only accepts this email & password
         if form.email.data == 'admin@ssis.com' and form.password.data == 'admin':
             flash('You have successfully logged in. Welcome back, Kyla!', 'success')
-            return redirect(url_for('students.student'))
+            return redirect(url_for('students.student'))    # After logging in, redirects to student page
         else:
             flash('Failed to login. Please check username and password', 'danger')
     return render_template('login.html', title='Log In', form=form)

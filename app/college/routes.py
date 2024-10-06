@@ -11,7 +11,7 @@ def colleges():
 
     except Exception as e:
         flash(f"An error has occured while fetching colleges: {e}", "danger")
-        return redirect(url_for('college.colleges'))    # Redirect back to the student list in case of error
+        return redirect(url_for('college.colleges'))    # Redirect back to the college list in case of error
     return render_template('college/college.html', title='College', colleges=colleges)
 
 
@@ -85,7 +85,7 @@ def edit_college(code):
             college_data = (
                 form.college_code.data,
                 form.college_name.data,  
-                code  # The code of the program to update
+                code  # The code of the college to update
             )
 
             edit_colleges(college_data) # Calls edit function

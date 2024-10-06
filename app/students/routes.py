@@ -96,8 +96,8 @@ def edit_student(id):
          
     if request.method == 'POST' and form.validate_on_submit():
         try:
-            # Checks if program code entered already exists and;
-            # Checks if the program code entered is different from original 
+            # Checks if student ID entered already exists and;
+            # Checks if the student ID entered is different from original 
             if form.id_number.data != id and check_id_exists(form.id_number.data):
                 flash(f"ID number {form.id_number.data} already exists. Please enter a different ID.", "danger")
                 return redirect(url_for('students.edit_student', id=id))

@@ -79,7 +79,7 @@ def check_course_code_exists(c_code):
         C.close() # Close the cursor
 
 
-# Fetch student data based on ID
+# Fetch program data by program code
 def get_program_by_code(c_code):
     C  = mysql.connection.cursor()
     try: 

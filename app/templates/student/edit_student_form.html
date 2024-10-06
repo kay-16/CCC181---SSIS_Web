@@ -10,6 +10,7 @@
             <fieldset class="form-group">
                 <legend class="border-bottom mb-4">Edit Student</legend>
 
+                <!-- Form group for ID number -->
                 <div class="form-group mb-3">
                     {{ form.id_number.label(class="form-control-label") }}
 
@@ -25,6 +26,7 @@
                     {% endif %}
                 </div>
 
+                <!-- Form group for first name -->
                 <div class="form-group mb-3">
                     {{ form.first_name.label(class="form-control-label") }}
                     {% if form.first_name.errors %}
@@ -39,6 +41,7 @@
                     {% endif %}
                 </div>
 
+                <!-- Form group for last name -->
                 <div class="form-group mb-3">
                     {{ form.last_name.label(class="form-control-label") }}
                     {% if form.last_name.errors %}
@@ -53,6 +56,7 @@
                     {% endif %}
                 </div>
 
+                <!-- Form group for year level -->
                 <div class="form-group mb-3">
                     {{ form.year_lvl.label(class="form-control-label") }}
                     {% if form.year_lvl.errors %}
@@ -67,6 +71,7 @@
                     {% endif %}
                 </div>
 
+                <!-- Form group for gender -->
                 <div class="form-group mb-3">
                     {{ form.gender.label(class="form-control-label") }}
                     {% if form.gender.errors %}
@@ -81,6 +86,7 @@
                     {% endif %}
                 </div>
                 
+                <!-- Form group for student program code -->
                 <div class="form-group mb-3">
                     {{ form.stud_course_code.label(class="form-control-label") }}
                     {% if form.stud_course_code.errors %}
