@@ -11,6 +11,7 @@ mysql-connector-python = "*"
 flask-mysqldb = "*"
 flask-bootstrap = "*"
 python-dotenv = "*"
+cloudinary = "*"
 
 [dev-packages]
 

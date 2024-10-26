@@ -1,7 +1,11 @@
 from flask import Flask
-from config import SECRET_KEY, DB_NAME, DB_USERNAME, DB_PASSWORD, DB_HOST, DB_PORT, BOOTSTRAP_SERVE_LOCAL
+from config import SECRET_KEY, DB_NAME, DB_USERNAME, DB_PASSWORD, DB_HOST, DB_PORT, BOOTSTRAP_SERVE_LOCAL, CLOUD_NAME
 from flask_mysqldb import MySQL
 from flask_wtf.csrf import CSRFProtect
+import cloudinary 
+import cloudinary.uploader
+
+
 
 mysql = MySQL()
 csrf = CSRFProtect()
@@ -38,4 +42,10 @@ def create_app():
     app.register_blueprint(login)
     app.register_blueprint(main)
 
+    cloudinary.config(
+        cloud_name = CLOUD_NAME,
+        secure = True
+    )
+
     return app
+

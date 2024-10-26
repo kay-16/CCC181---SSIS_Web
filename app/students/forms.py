@@ -1,4 +1,5 @@
 from flask_wtf import FlaskForm
+from flask_wtf.file import FileField, FileAllowed, FileRequired
 from wtforms import StringField, SubmitField, SelectField
 from wtforms.validators import DataRequired, Length, Regexp
 
@@ -23,6 +24,12 @@ class StudentForms(FlaskForm):
     
     stud_course_code = SelectField('Program', choices=[])
 
+    student_image = FileField('Upload Image:', validators=[FileRequired(),
+                                                          FileAllowed(['jpg', 'jpeg' 'png'], "This file is not a valid image!",)
+                                                          ])
+
+    upload = SubmitField('Upload')
+    
     submit = SubmitField('Submit')
     
     
@@ -43,5 +50,10 @@ class EditStudentForms(FlaskForm):
     
     stud_course_code = SelectField('Program', choices=[])
 
+    student_image = FileField('Upload Image', validators=[DataRequired()])
+    submit = SubmitField('Upload')
+
     save = SubmitField('Save Changes')
     cancel = SubmitField('Cancel')
+
+   

@@ -1,7 +1,9 @@
 from flask import render_template, request, url_for, redirect, flash
 from app.students.controller import get_all_students, get_all_programs, add_student_to_db, search_students, edit_students, get_student_by_id, delete_students, check_id_exists
-from app.students.forms import StudentForms, EditStudentForms
+from app.students.forms import StudentForms, EditStudentForms 
 from . import students
+import cloudinary.uploader
+from werkzeug.utils import secure_filename
 
 
 @students.route("/students")  
@@ -45,6 +47,15 @@ def add_student():
                 form.gender.data,
                 form.stud_course_code.data if form.stud_course_code.data != 'None' else None
             )
+
+            image_file = request.files['student_image']
+            if image_file:
+                    upload_result = cloudinary.uploader.upload(image_file)
+                    image_url = upload_result.get('secure_url')
+
+                    flash(f"Image uploaded successfully!", "success")
+                    return redirect(url_for('students.student'))
+
 
             add_student_to_db(student_data)
             flash(f'Added {form.first_name.data} {form.last_name.data} with ID number {form.id_number.data}!', 'success') 
@@ -149,3 +160,19 @@ def delete_student(id_num):
         flash(f"WARNING: Do not attempt to delete a student directly via URL!", "danger")
 
     return redirect(url_for('students.student'))
+
+""" 
+@students.route("/upload_image", methods=["GET", "POST"])
+def upload_image_student():
+    form = UploadImageForms
+    if form.validate_on_submit():
+        image_file = request.files['image']
+        if image_file:
+            upload_result = cloudinary.uploader.upload('image_file')
+            image_url = upload_result.get('secure_url')
+
+
+            flash(f"Image uploaded successfully!", "success")
+            return redirect(url_for('students.student'))
+    return render_template('upload_image.html', form=form)
+    """

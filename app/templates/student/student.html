@@ -33,6 +33,7 @@
         <table class="table table-hover mt-3">
             <thead style="background-color: #7cc404;color: #dfdfdf;">
                 <tr> 
+                    <th>Profile Picture</th>
                     <th>ID no.</th>
                     <th>First Name</th>
                     <th>Last Name</th>
@@ -46,6 +47,14 @@
             <tbody>
                 {% for student in students %}
                     <tr>
+                        <td>
+                            <span style="font-size: 24px;">
+                                <a href="#"> 
+                                    <i class="fas fa-edit" style="color: #659406;"></i>
+                                </a>
+                            </span>
+                        </td>
+                       
                         <td>{{ student[0] }}</td>  <!-- id_format -->
                         <td>{{ student[1] }}</td>  <!-- first_name -->
                         <td>{{ student[2] }}</td>  <!-- last_name -->
