@@ -25,11 +25,8 @@ class StudentForms(FlaskForm):
     stud_course_code = SelectField('Program', choices=[])
 
     student_image = FileField('Upload Image:', validators=[FileRequired(),
-                                                          FileAllowed(['jpg', 'jpeg' 'png'], "This file is not a valid image!",)
+                                                          FileAllowed(['jpg', 'jpeg', 'png', 'webP'], "This file is not a valid image!",)
                                                           ])
-
-    upload = SubmitField('Upload')
-    
     submit = SubmitField('Submit')
     
     
@@ -50,10 +47,9 @@ class EditStudentForms(FlaskForm):
     
     stud_course_code = SelectField('Program', choices=[])
 
-    student_image = FileField('Upload Image', validators=[DataRequired()])
-    submit = SubmitField('Upload')
-
+    student_image = FileField('Upload Image:', validators=[FileAllowed(['jpg', 'jpeg', 'png', 'webP'], 
+                                                                       "This file is not a valid image!",)])
     save = SubmitField('Save Changes')
-    cancel = SubmitField('Cancel')
+    
 
    

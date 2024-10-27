@@ -5,7 +5,7 @@
 {% block content %}
 <div class="center-form">
     <div class="content-section">
-        <form method="POST" action="">
+        <form method="POST" action="" enctype="multipart/form-data">
             {{ form.hidden_tag() }}
             <fieldset class="form-group">
                 <legend class="border-bottom mb-4">Add Student</legend>
@@ -101,13 +101,9 @@
                     {% endif %}
                 </div>
 
-               
                 <div class="mt-4">
-                        <form method="POST" enctype="multipart/form-data">
-                        {{ form.student_image.label(class="form-control-label") }}
-                        {{ form.student_image(class="form-control-file" ) }}
-                        {{ form.upload(class="btn btn-dark") }}
-                        </form>
+                    {{ form.student_image.label(class="form-control-label") }}
+                    {{ form.student_image(class="form-control-file" ) }}
                 </div>
 
             </fieldset>

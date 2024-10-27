@@ -3,7 +3,6 @@ from app.students.controller import get_all_students, get_all_programs, add_stud
 from app.students.forms import StudentForms, EditStudentForms 
 from . import students
 import cloudinary.uploader
-from werkzeug.utils import secure_filename
 
 
 @students.route("/students")  
@@ -37,6 +36,14 @@ def add_student():
             if check_id_exists(form.id_number.data):
                 flash(f"ID number {form.id_number.data} already exists. Please enter a different ID.", "danger")
                 return redirect(url_for('students.add_student'))
+            
+        # Handle file upload
+            image_file = form.student_image.data
+            image_url = None
+            if image_file:
+                upload_result = cloudinary.uploader.upload(image_file)
+                print(upload_result)
+                image_url = upload_result.get('secure_url')
 
         # Insert the added student into the database
             student_data = (
@@ -45,19 +52,12 @@ def add_student():
                 form.last_name.data,
                 form.year_lvl.data,
                 form.gender.data,
-                form.stud_course_code.data if form.stud_course_code.data != 'None' else None
+                form.stud_course_code.data if form.stud_course_code.data != 'None' else None,
+                image_url       # Stores image URL if it was uploaded
             )
 
-            image_file = request.files['student_image']
-            if image_file:
-                    upload_result = cloudinary.uploader.upload(image_file)
-                    image_url = upload_result.get('secure_url')
-
-                    flash(f"Image uploaded successfully!", "success")
-                    return redirect(url_for('students.student'))
-
-
             add_student_to_db(student_data)
+
             flash(f'Added {form.first_name.data} {form.last_name.data} with ID number {form.id_number.data}!', 'success') 
             return redirect(url_for('students.student')) # If validated, redirect user back to student page
         
@@ -113,6 +113,14 @@ def edit_student(id):
                 flash(f"ID number {form.id_number.data} already exists. Please enter a different ID.", "danger")
                 return redirect(url_for('students.edit_student', id=id))
             
+            # Handle file upload
+            image_file = form.student_image.data
+            image_url = None
+            if image_file:
+                upload_result = cloudinary.uploader.upload(image_file)
+                print(upload_result)
+                image_url = upload_result.get('secure_url')
+
             # Prepare data for update
             student_data = (
                 form.id_number.data,
@@ -121,10 +129,12 @@ def edit_student(id):
                 form.year_lvl.data,
                 form.gender.data,
                 form.stud_course_code.data,
+                image_url if image_url else student[6], # Use current image if no new image is uploaded
                 id  # The ID of the student to update
             )
 
             edit_students(student_data) # Calls edit function
+
             flash("Student updated successfully", "success")
             return redirect(url_for('students.student'))  # Redirect back to student list after edit
         except Exception as e:
@@ -136,9 +146,10 @@ def edit_student(id):
     form.last_name.data = student[2]
     form.year_lvl.data = student[3]
     form.gender.data = student[4]
-    form.stud_course_code.data = student[5]
+    form.stud_course_code.data = student[5] 
 
-    return render_template('student/edit_student_form.html', title='Student | Edit', form=form, student=student)
+    return render_template('student/edit_student_form.html', title='Student | Edit', form=form, 
+                           student=student, current_image_url=student[6])
 
 
 @students.route("/delete/<id_num>", methods=["POST"])

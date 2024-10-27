@@ -48,11 +48,11 @@
                 {% for student in students %}
                     <tr>
                         <td>
-                            <span style="font-size: 24px;">
-                                <a href="#"> 
-                                    <i class="fas fa-edit" style="color: #659406;"></i>
-                                </a>
-                            </span>
+                            {% if student[6] %}
+                                <img src="{{ student[6] }}" alt="Profile Picture" style="width: 40px; height: 40px; border-radius: 50%;">
+                            {% else %}
+                                <i class="fas fa-user-circle" style="font-size: 40px; color: #ccc"></i>
+                            {% endif %}
                         </td>
                        
                         <td>{{ student[0] }}</td>  <!-- id_format -->
@@ -61,6 +61,7 @@
                         <td>{{ student[3] }}</td>  <!-- year_lvl -->
                         <td>{{ student[4] }}</td>  <!-- sex -->
                         <td>{{ student[5] if student[5] else 'Unenrolled' }}</td>  <!-- stud_course_code -->
+                       
                         <td>
                             <span style="font-size: 24px;">
                                 <a href="{{ url_for('students.edit_student', id=student[0]) }}"> 

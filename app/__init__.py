@@ -1,5 +1,5 @@
 from flask import Flask
-from config import SECRET_KEY, DB_NAME, DB_USERNAME, DB_PASSWORD, DB_HOST, DB_PORT, BOOTSTRAP_SERVE_LOCAL, CLOUD_NAME
+from config import SECRET_KEY, DB_NAME, DB_USERNAME, DB_PASSWORD, DB_HOST, DB_PORT, BOOTSTRAP_SERVE_LOCAL, CLOUD_NAME, CLOUD_KEY, CLOUD_KEY_SECRET
 from flask_mysqldb import MySQL
 from flask_wtf.csrf import CSRFProtect
 import cloudinary 
@@ -44,6 +44,8 @@ def create_app():
 
     cloudinary.config(
         cloud_name = CLOUD_NAME,
+        api_key = CLOUD_KEY,
+        api_secret = CLOUD_KEY_SECRET,
         secure = True
     )
 

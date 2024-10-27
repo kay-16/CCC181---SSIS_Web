@@ -4,7 +4,7 @@ from app import mysql
 def get_all_students():
     C = mysql.connection.cursor()
     try:
-        C.execute("SELECT id_format, first_name, last_name, year_lvl, sex, stud_course_code FROM student ORDER BY last_name ASC;")
+        C.execute("SELECT * FROM student ORDER BY last_name ASC;")
         rows = C.fetchall()
         return rows
     
@@ -37,8 +37,8 @@ def add_student_to_db(student):
     C = mysql.connection.cursor()
     try:
         insert_statement = """
-            INSERT INTO student (id_format, first_name, last_name, year_lvl, sex, stud_course_code) 
-            VALUES (%s, %s, %s, %s, %s, %s);
+            INSERT INTO student (id_format, first_name, last_name, year_lvl, sex, stud_course_code, stud_image_url) 
+            VALUES (%s, %s, %s, %s, %s, %s, %s);
         """
         C.execute(insert_statement, student)
         mysql.connection.commit()
@@ -106,7 +106,7 @@ def edit_students(student):
     try:
         edit_statement = """
                         UPDATE student
-                        SET id_format = %s, first_name = %s, last_name = %s, year_lvl = %s, sex = %s, stud_course_code = %s 
+                        SET id_format = %s, first_name = %s, last_name = %s, year_lvl = %s, sex = %s, stud_course_code = %s, stud_image_url = %s 
                         WHERE id_format = %s;
                     """
         C.execute(edit_statement, student)
