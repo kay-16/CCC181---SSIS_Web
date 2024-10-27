@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed, FileRequired
-from wtforms import StringField, SubmitField, SelectField
+from wtforms import StringField, SubmitField, SelectField, BooleanField
 from wtforms.validators import DataRequired, Length, Regexp
 
 
@@ -49,6 +49,7 @@ class EditStudentForms(FlaskForm):
 
     student_image = FileField('Upload Image:', validators=[FileAllowed(['jpg', 'jpeg', 'png', 'webp'], 
                                                                        "This file is not a valid image!",)])
+    remove_image = BooleanField("Clear Image")
     save = SubmitField('Save Changes')
     
 

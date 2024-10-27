@@ -116,10 +116,14 @@ def edit_student(id):
             # Handle file upload
             image_file = form.student_image.data
             image_url = None
-            if image_file:
+            if form.remove_image.data:
+                image_url = None    # Sets image URL to NULL (removed) in the database
+            elif image_file:
                 upload_result = cloudinary.uploader.upload(image_file)
                 print(upload_result)
                 image_url = upload_result.get('secure_url')
+            else:
+                image_url = student[6]    # Retain the current image if no image is removed or uploaded 
 
             # Prepare data for update
             student_data = (
@@ -129,7 +133,7 @@ def edit_student(id):
                 form.year_lvl.data,
                 form.gender.data,
                 form.stud_course_code.data,
-                image_url if image_url else student[6], # Use current image if no new image is uploaded
+                image_url,
                 id  # The ID of the student to update
             )
 
