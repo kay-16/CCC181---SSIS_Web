@@ -86,7 +86,7 @@
                     {% endif %}
                 </div>
                 
-                 <!-- Form group for student program code -->
+                <!-- Form group for student program code -->
                 <div class="form-group mb-3">
                     {{ form.stud_course_code.label(class="form-control-label") }}
                     {% if form.stud_course_code.errors %}
@@ -101,14 +101,35 @@
                     {% endif %}
                 </div>
 
-                <div class="mt-4">
+                <!-- For upload image  -->
+                <div class="upload-image mt-4">
                     {{ form.student_image.label(class="form-control-label") }}
-                    {{ form.student_image(class="form-control-file" ) }}
+                    <label for="student-image-input" class="custom-file-upload">
+                       Choose file
+                    </label>
+
+                    {{ form.student_image(class="form-control-file", id="student-image-input") }}
+                    <span id="file-chosen" class="file-chosen-text">No file chosen</span>
+
+                    {% if form.student_image.errors %}
+                        <div class="error-message">
+                            {% for error in form.student_image.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
                 </div>
 
+                <!-- Shows specific file chosen by the user -->
+                <script>
+                    document.getElementById("student-image-input").addEventListener("change", function() {
+                    const fileName = this.files[0] ? this.files[0].name : "No file chosen";
+                    document.getElementById("file-chosen").textContent = fileName;
+                    });
+                </script>
             </fieldset>
 
-             <!-- Form group for submit button -->
+            <!-- Form group for submit button -->
             <div class="form-group">
                 <div class="mt-4">
                 {{ form.submit(class="btn btn-dark") }}

@@ -1,7 +1,8 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed, FileRequired
 from wtforms import StringField, SubmitField, SelectField, BooleanField
-from wtforms.validators import DataRequired, Length, Regexp
+from wtforms.validators import DataRequired, Length, Regexp, ValidationError
+
 
 
 class StudentForms(FlaskForm):
@@ -24,10 +25,24 @@ class StudentForms(FlaskForm):
     
     stud_course_code = SelectField('Program', choices=[])
 
-    student_image = FileField('Upload Image:', validators=[FileRequired(),
-                                                          FileAllowed(['jpg', 'jpeg', 'png', 'webp'], "This file is not a valid image!",)
-                                                          ])
+    # Limits file size to 2MB
+    def FileSizeLimit(max_size_in_mb):
+        max_size = max_size_in_mb*1024*1024
+
+        def file_length_check(form, field):
+            if len(field.data.read()) > max_size:
+                raise ValidationError(f'File size is too large. Max allowed: {max_size_in_mb} MB.')
+            field.data.seek(0)
+        return file_length_check
+
+    student_image = FileField('Upload Profile Picture', validators=[FileRequired(),
+                                                        FileAllowed(['jpg', 'jpeg', 'png', 'webp'],
+                                                                       "⚠️ Not a valid image! Please upload a file in one of these formats: jpg, jpeg, png, or webp."),
+                                                        FileSizeLimit(max_size_in_mb=1)
+                                                        ])
+    
     submit = SubmitField('Submit')
+
     
     
 class EditStudentForms(FlaskForm):
@@ -47,10 +62,23 @@ class EditStudentForms(FlaskForm):
     
     stud_course_code = SelectField('Program', choices=[])
 
-    student_image = FileField('Upload Image:', validators=[FileAllowed(['jpg', 'jpeg', 'png', 'webp'], 
-                                                                       "This file is not a valid image!",)])
-    remove_image = BooleanField("Clear Image")
+    # Limits file size to 2MB
+    def FileSizeLimit(max_size_in_mb):
+        max_size = max_size_in_mb*1024*1024
+
+        def file_length_check(form, field):
+            if len(field.data.read()) > max_size:
+                raise ValidationError(f'File size is too large. Max allowed: {max_size_in_mb} MB.')
+            field.data.seek(0)
+        return file_length_check
+
+    student_image = FileField('Upload Profile Picture', validators=[FileRequired(),
+                                                        FileAllowed(['jpg', 'jpeg', 'png', 'webp'],
+                                                                       "⚠️ Not a valid image! Please upload a file in one of these formats: jpg, jpeg, png, or webp."),
+                                                        FileSizeLimit(max_size_in_mb=1)
+                                                        ])
+    
+    remove_image = BooleanField("Remove Image")
     save = SubmitField('Save Changes')
     
-
    

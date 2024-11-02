@@ -175,19 +175,3 @@ def delete_student(id_num):
         flash(f"WARNING: Do not attempt to delete a student directly via URL!", "danger")
 
     return redirect(url_for('students.student'))
-
-""" 
-@students.route("/upload_image", methods=["GET", "POST"])
-def upload_image_student():
-    form = UploadImageForms
-    if form.validate_on_submit():
-        image_file = request.files['image']
-        if image_file:
-            upload_result = cloudinary.uploader.upload('image_file')
-            image_url = upload_result.get('secure_url')
-
-
-            flash(f"Image uploaded successfully!", "success")
-            return redirect(url_for('students.student'))
-    return render_template('upload_image.html', form=form)
-    """
