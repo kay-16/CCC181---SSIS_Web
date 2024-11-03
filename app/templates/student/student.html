@@ -51,7 +51,7 @@
                             {% if student[6] %}
                                 <img src="{{ student[6] }}" alt="Profile Picture" style="width: 40px; height: 40px; border-radius: 50%;">
                             {% else %}
-                                <i class="fas fa-user-circle" style="font-size: 40px; color: #ccc"></i>
+                                <i class="fas fa-circle-user" style="font-size: 40px; color: #ccc"></i>
                             {% endif %}
                         </td>
                        
@@ -65,13 +65,13 @@
                         <td>
                             <span style="font-size: 24px;">
                                 <a href="{{ url_for('students.edit_student', id=student[0]) }}"> 
-                                    <i class="fas fa-edit" style="color: #659406;"></i>
+                                    <i class="fas fa-pen-to-square" style="color: #659406;"></i>
                                 </a>
                             </span>
 
                             <span style="font-size: 24px;"> 
                                 <button onclick="confirmDeleteStudent('{{ student[0] }}');" style="background:none;border:none;cursor:pointer;">
-                                    <i class="fas fa-trash-alt" style="color: #F44336;"></i>
+                                    <i class="fas fa-trash-can" style="color: #F44336;"></i>
                                 </button>
                             </span>
 

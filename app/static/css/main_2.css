@@ -346,3 +346,18 @@ fieldset legend {
     font-weight: 100;
     margin-left: 10px;
 }
+
+@font-face {
+    font-family: 'Bootstrap Icons';
+    src: url('../fonts/bootstrap-icons.woff2') format('woff2'),
+         url('../fonts/bootstrap-icons.woff') format('woff');
+  }
+
+@font-face {
+    font-family: 'Font Awesome 5 Free';
+    font-style: normal;
+    font-weight: 900;
+    src:url('../webfonts/fa-solid-900.ttf') format('truetype'), 
+        url('../webfonts/fa-solid-900.woff2') format('woff2');
+         
+}
