@@ -118,6 +118,7 @@ def edit_student(id):
             image_url = None
             if form.remove_image.data:
                 image_url = None    # Sets image URL to NULL (removed) in the database
+                flash("Image removed successfully", "success")
             elif image_file:
                 upload_result = cloudinary.uploader.upload(image_file)
                 print(upload_result)

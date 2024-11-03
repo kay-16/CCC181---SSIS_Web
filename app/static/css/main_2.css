@@ -147,7 +147,7 @@ form .form-group {
 
 form .form-control-lg {
     width: 100%; /* Make input fields expand to the width of the form */
-    padding: 0.75rem; /* Increase padding */
+    padding: 0.75rem; 
 }
 
 form .form-control-label {
@@ -255,6 +255,7 @@ fieldset legend {
 }
 
 /* UPLOAD IMAGE ELEMENTS */
+
 .upload-image {
     height: 100;
 

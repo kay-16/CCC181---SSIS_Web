@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed, FileRequired
 from wtforms import StringField, SubmitField, SelectField, BooleanField
-from wtforms.validators import DataRequired, Length, Regexp, ValidationError
+from wtforms.validators import DataRequired, Length, Regexp, ValidationError, Optional
 
 
 
@@ -38,7 +38,7 @@ class StudentForms(FlaskForm):
     student_image = FileField('Upload Profile Picture', validators=[FileRequired(),
                                                         FileAllowed(['jpg', 'jpeg', 'png', 'webp'],
                                                                        "⚠️ Not a valid image! Please upload a file in one of these formats: jpg, jpeg, png, or webp."),
-                                                        FileSizeLimit(max_size_in_mb=1)
+                                                        FileSizeLimit(max_size_in_mb=2)
                                                         ])
     
     submit = SubmitField('Submit')
@@ -72,10 +72,10 @@ class EditStudentForms(FlaskForm):
             field.data.seek(0)
         return file_length_check
 
-    student_image = FileField('Upload Profile Picture', validators=[FileRequired(),
+    student_image = FileField('Upload Profile Picture', validators=[Optional(),
                                                         FileAllowed(['jpg', 'jpeg', 'png', 'webp'],
                                                                        "⚠️ Not a valid image! Please upload a file in one of these formats: jpg, jpeg, png, or webp."),
-                                                        FileSizeLimit(max_size_in_mb=1)
+                                                        FileSizeLimit(max_size_in_mb=2)
                                                         ])
     
     remove_image = BooleanField("Remove Image")
