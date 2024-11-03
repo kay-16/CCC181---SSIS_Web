@@ -5,11 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="{{ url_for('static', filename='css/bootstrap.min.css')}}" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/main_2.css')}}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/all.min.css') }}" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome-5.15.4.min.css') }}" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main_2.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" /> 
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-icons.min.css') }}">
-
+    
     <script src="{{ url_for('static', filename='javascript/yoyoPopup.umd.min.js') }}"></script>
     <script src="{{ url_for('static', filename='javascript/student/confirm_delete.js') }}"></script>
     <script src="{{ url_for('static', filename='javascript/program/confirm_delete.js') }}"></script>
@@ -24,6 +23,12 @@
         <title>Page </title>
     {% endif %}
   
+    <style>
+      :root {
+          --background-image-url: url('{{ url_for('static', filename='images/img_2.png') }}');
+      }
+      </style>
+      
 </head>
 <body>
     <header class="site-header">
