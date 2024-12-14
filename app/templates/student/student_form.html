@@ -60,14 +60,14 @@
                 <div class="form-group mb-3">
                     {{ form.year_lvl.label(class="form-control-label") }}
                     {% if form.year_lvl.errors %}
-                        {{ form.year_lvl(class="form-control form-control-lg is-invalid") }}
+                        {{ form.year_lvl(class="column-search is-invalid") }}
                         <div class="invalid-feedback">
                             {% for error in form.year_lvl.errors %}
                                 <span>{{ error }}</span>
                             {% endfor %}
                         </div>
                     {% else %}
-                        {{ form.year_lvl(class="form-control form-control-lg") }}
+                        {{ form.year_lvl(class="column-search") }}
                     {% endif %}
                 </div>
 
@@ -75,14 +75,14 @@
                 <div class="form-group mb-3">
                     {{ form.gender.label(class="form-control-label") }}
                     {% if form.gender.errors %}
-                        {{ form.gender(class="form-control form-control-lg is-invalid") }}
+                        {{ form.gender(class="column-search is-invalid") }}
                         <div class="invalid-feedback">
                             {% for error in form.gender.errors %}
                                 <span>{{ error }}</span>
                             {% endfor %}
                         </div>
                     {% else %}
-                        {{ form.gender(class="form-control form-control-lg") }}
+                        {{ form.gender(class="column-search") }}
                     {% endif %}
                 </div>
                 
@@ -90,14 +90,14 @@
                 <div class="form-group mb-3">
                     {{ form.stud_course_code.label(class="form-control-label") }}
                     {% if form.stud_course_code.errors %}
-                        {{ form.stud_course_code(class="form-control form-control-lg is-invalid") }}
+                        {{ form.stud_course_code(class="column-search is-invalid") }}
                         <div class="invalid-feedback">
                             {% for error in form.stud_course_code.errors %}
                                 <span>{{ error }}</span>
                             {% endfor %}
                         </div>
                     {% else %}
-                        {{ form.stud_course_code(class="form-control form-control-lg") }}
+                        {{ form.stud_course_code(class="column-search") }}
                     {% endif %}
                 </div>
 

@@ -30,17 +30,19 @@ class StudentForms(FlaskForm):
         max_size = max_size_in_mb*1024*1024
 
         def file_length_check(form, field):
+            if not field.data:
+                return
+            if field.data.stream is None:
+                return
             if len(field.data.read()) > max_size:
                 raise ValidationError(f'File size is too large. Max allowed: {max_size_in_mb} MB.')
             field.data.seek(0)
         return file_length_check
 
-    student_image = FileField('Upload Profile Picture', validators=[FileRequired(),
-                                                        FileAllowed(['jpg', 'jpeg', 'png', 'webp'],
+    student_image = FileField('Upload Profile Picture', validators=[FileAllowed(['jpg', 'jpeg', 'png', 'webp'],
                                                                        "⚠️ Not a valid image! Please upload a file in one of these formats: jpg, jpeg, png, or webp."),
                                                         FileSizeLimit(max_size_in_mb=2)
                                                         ])
-    
     submit = SubmitField('Submit')
 
     

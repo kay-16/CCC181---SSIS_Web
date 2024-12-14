@@ -4,8 +4,26 @@ from app import mysql
 def get_all_students():
     C = mysql.connection.cursor()
     try:
-        C.execute("SELECT * FROM student ORDER BY last_name ASC;")
+        query = """
+            SELECT 
+                s.id_format, 
+                s.first_name, 
+                s.last_name, 
+                s.year_lvl, 
+                s.sex, 
+                s.stud_course_code,
+                CONCAT(s.stud_course_code, '-', c.college_name) AS program_with_college 
+            FROM 
+                student s
+            JOIN 
+                college c ON s.stud_course_code = c.col_course_code
+            ORDER BY 
+                s.last_name ASC;
+        """
+        C.execute(query)       
         rows = C.fetchall()
+        if rows is None:
+            return []
         return rows
     
     except Exception as e:
@@ -72,7 +90,7 @@ def search_students(column, field):
         if field == "Unenrolled":
             C.execute(f"SELECT * FROM student WHERE {column} IS NULL;")
         else:    
-            C.execute(f"SELECT * FROM student WHERE {column} COLLATE utf8mb4_bin LIKE '%{field}%';")
+            C.execute(f"SELECT * FROM student WHERE {column} COLLATE utf8mb4_general_ci LIKE '%{field}%';")
         return C.fetchall()
     
     except mysql.connection.Error as e:

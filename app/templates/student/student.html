@@ -61,7 +61,7 @@
                         <td>{{ student[3] }}</td>  <!-- year_lvl -->
                         <td>{{ student[4] }}</td>  <!-- sex -->
                         <td>{{ student[5] if student[5] else 'Unenrolled' }}</td>  <!-- stud_course_code -->
-                       
+                        
                         <td>
                             <span style="font-size: 24px;">
                                 <a href="{{ url_for('students.edit_student', id=student[0]) }}"> 

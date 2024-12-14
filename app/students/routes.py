@@ -9,7 +9,7 @@ import cloudinary.uploader
 def student():
     try:
         students = get_all_students() # Fetch all student from the database
-
+        print(students)
     except Exception as e:
         flash(f"An error has occured while fetching students: {e}", "danger")
         return redirect(url_for('students.student'))    # Redirect back to the student list in case of error

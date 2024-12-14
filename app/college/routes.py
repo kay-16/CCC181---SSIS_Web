@@ -106,7 +106,7 @@ def delete_college(col_code):
     if request.method == "POST":
         try:
             delete_colleges(col_code)
-            flash(f"College {col_code} is deleted successfully!", "success")
+            flash(f"Warning! Cannot delete college {col_code}.", "danger")
 
         except Exception as e:
             flash(f"Database error: {str(e)}", "danger")
